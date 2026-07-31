@@ -1,27 +1,22 @@
 ---
 title: Research
 nav:
-  order: 1
-  tooltip: Published works
+  order: 2
+  tooltip: Research areas and projects
 ---
 
 # {% include icon.html icon="fa-solid fa-microscope" %}Research
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Our research examines mechanical safety through computational modeling and simulation.
 
 {% include section.html %}
 
-## Highlighted
+## Research Areas
 
-{% include citation.html lookup="Open collaborative writing with Manubot" style="rich" %}
+Detailed research areas and representative projects will be added after the laboratory description is finalized.
 
 {% include section.html %}
 
-## All
+## Research Approach
 
-{% include search-box.html %}
-
-{% include search-info.html %}
-
-{% include list.html data="citations" component="citation" style="rich" %}
+Our work brings together mechanics, numerical methods, physics-based simulation, and data-informed approaches for safer mechanical systems.
