@@ -2,21 +2,21 @@
 layout: default
 ---
 
-{% include member-row.html member=page link=false show_summary=false %}
+{% capture floatcontent %}
 
-{% if page.links %}
+{% include portrait.html lookup=page.slug %}
+
 <div>
   {% for link in page.links %}
     {% assign key = link[0] %}
     {% assign value = link[1] %}
-    {% unless key == "email" %}
     {% include button.html type=key link=value style="bare" %}<br>
-    {% endunless %}
   {% endfor %}
 </div>
-{% endif %}
 
-{% include section.html %}
+{% endcapture %}
+
+{% include float.html content=floatcontent %}
 
 {{ content }}
 
@@ -29,11 +29,23 @@ layout: default
 %}
 
 {% capture search -%}
-  publications/?search={% for alias in aliases %}"{{ alias }}" {% endfor %}
+  research/?search={% for alias in aliases %}"{{ alias }}" {% endfor %}
 {%- endcapture %}
 
 <p class="center">
   <a href="{{ search | relative_url | uri_escape }}">
-    Search for {{ page.name | default: page.title }}'s papers on the Publications page
+    Search for {{ page.name | default: page.title }}'s papers on the Research page
   </a>
 </p>
+
+{% capture search -%}
+  blog/?search={{ page.name }}
+{%- endcapture %}
+
+<!--
+<p class="center">
+  <a href="{{ search | relative_url | uri_escape }}">
+    See {{ page.name | default: page.title }}'s posts on the Blog page
+  </a>
+</p>
+-->

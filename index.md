@@ -1,44 +1,81 @@
 ---
-title: Home
-nav:
-  order: 1
-  tooltip: Home
 ---
 
-# Mechanical safety through simulation
+# MechSafety's Website
 
-We study mechanical safety using computational modeling and simulation.
-
-{% include recruitment.html %}
+An engaging 1-3 sentence description of your lab.
 
 {% include section.html %}
 
-## Latest News
+## Highlights
 
-{% assign latest_posts = site.posts | slice: 0, 3 %}
+{% capture text %}
 
-{% if latest_posts.size > 0 %}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-{% capture news_cards %}
-  {% for post in latest_posts %}
-    {% include news-card.html post=post %}
-  {% endfor %}
+{%
+  include button.html
+  link="research"
+  text="See our publications"
+  icon="fa-solid fa-arrow-right"
+  flip=true
+  style="bare"
+%}
+
 {% endcapture %}
 
-{% include grid.html content=news_cards %}
+{%
+  include feature.html
+  image="images/photo.jpg"
+  link="research"
+  title="Our Research"
+  text=text
+%}
 
-{% include button.html link="news" text="View all news" icon="fa-solid fa-arrow-right" flip=true style="bare" %}
+{% capture text %}
 
-{% else %}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-News and laboratory activities will be posted here.
+{%
+  include button.html
+  link="projects"
+  text="Browse our projects"
+  icon="fa-solid fa-arrow-right"
+  flip=true
+  style="bare"
+%}
 
-{% endif %}
+{% endcapture %}
 
-{% include section.html %}
+{%
+  include feature.html
+  image="images/photo.jpg"
+  link="projects"
+  title="Our Projects"
+  flip=true
+  style="bare"
+  text=text
+%}
 
-## Research
+{% capture text %}
 
-Our research focuses on the mechanics, modeling, and simulation methods needed to understand and improve the safety of mechanical systems.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-{% include button.html link="research" text="Explore our research" icon="fa-solid fa-arrow-right" flip=true style="bare" %}
+{%
+  include button.html
+  link="team"
+  text="Meet our team"
+  icon="fa-solid fa-arrow-right"
+  flip=true
+  style="bare"
+%}
+
+{% endcapture %}
+
+{%
+  include feature.html
+  image="images/photo.jpg"
+  link="team"
+  title="Our Team"
+  text=text
+%}
