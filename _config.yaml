@@ -29,6 +29,10 @@ defaults:
       type: "posts"
     values:
       layout: post
+  - scope:
+      type: "cms_news"
+    values:
+      layout: modern-news
 
 collections:
   # generate page for each member
@@ -37,6 +41,17 @@ collections:
   # generate page for each post
   posts:
     output: true
+  cms_news:
+    output: true
+    permalink: /news/:name/
+  cms_members:
+    output: false
+  cms_research:
+    output: false
+  cms_publications:
+    output: false
+  cms_courses:
+    output: false
 
 # jekyll plugins
 plugins:
@@ -60,12 +75,14 @@ sass:
 include:
   - _styles
   - _scripts
+  - .design-preview
 
 # force jekyll to exclude certain files/folders
 exclude:
   - README.md
   - LICENSE.md
   - CITATION.cff
+  - tmp
 
 # configure jekyll spaceship
 jekyll-spaceship:

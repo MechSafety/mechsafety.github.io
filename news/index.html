@@ -1,0 +1,16 @@
+---
+layout: modern
+title: News
+section: news
+---
+{% assign news_items = site.cms_news | where: 'published', true | sort: 'date' | reverse %}
+<section class="page-hero"><div class="shell"><h1 lang="en">News</h1></div></section>
+<section class="section alt"><div class="shell">
+  {% if news_items.size > 0 %}
+  <div class="news-grid">
+    {% for item in news_items %}{% include modern-news-card.html item=item index=forloop.index %}{% endfor %}
+  </div>
+  {% else %}
+  <p class="empty-state">새로운 소식을 준비하고 있습니다.</p>
+  {% endif %}
+</div></section>

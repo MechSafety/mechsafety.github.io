@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="{{ page.lang | default: 'ko' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ page.description | default: site.description | escape }}">
+    <title>{% if page.title and page.title != 'Home' %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/.design-preview/style-modern.css' | relative_url }}">
+  </head>
+  <body>
+    {% include modern-header.html %}
+    <main>{{ content }}</main>
+    {% include modern-footer.html %}
+  </body>
+</html>

@@ -1,0 +1,33 @@
+---
+layout: modern
+title: Members
+section: members
+---
+{% assign members = site.cms_members | where: 'published', true | sort: 'order' %}
+<section class="page-hero"><div class="shell"><h1 lang="en">Members</h1></div></section>
+<section class="section alt"><div class="shell">
+  <div class="member-current" id="current-members">
+    {% assign group_names = 'Principal Investigator|Postdoctoral Researcher|Ph.D. Student|M.S. Student|Undergraduate Researcher' | split: '|' %}
+    {% assign group_labels = 'Principal Investigator|Postdoctoral Researchers|Ph.D. Students|M.S. Students|Undergraduate Researchers' | split: '|' %}
+    {% for group_name in group_names %}
+      {% assign group_members = members | where: 'group', group_name %}
+      {% if group_members.size > 0 %}
+      <section class="member-group">
+        <h2 lang="en">{{ group_labels[forloop.index0] }}</h2>
+        <div class="member-list">
+          {% for member in group_members %}{% include modern-member-card.html member=member %}{% endfor %}
+        </div>
+      </section>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% assign alumni = members | where: 'group', 'Alumni' %}
+  {% if alumni.size > 0 %}
+  <section class="member-group" id="alumni">
+    <h2 lang="en">Alumni</h2>
+    <div class="member-list">
+      {% for member in alumni %}{% include modern-member-card.html member=member %}{% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</div></section>

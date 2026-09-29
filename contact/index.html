@@ -1,0 +1,29 @@
+---
+layout: modern
+title: Contact
+section: contact
+---
+{% assign contact = site.data.cms.contact %}
+<section class="page-hero"><div class="shell"><h1 lang="en">Contact</h1></div></section>
+<section class="section alt"><div class="shell">
+  <div class="contact-layout">
+    <article class="contact-card">
+      <h2>연구실 정보</h2>
+      <dl class="contact-details">
+        <div><dt>지도교수</dt><dd>{{ contact.professor }}</dd></div>
+        <div><dt>소속</dt><dd>{{ contact.affiliation }}</dd></div>
+        <div><dt>주소</dt><dd>{{ contact.address }}</dd></div>
+        <div><dt>이메일</dt><dd><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></dd></div>
+        <div><dt>홈페이지</dt><dd><a href="{{ contact.website }}">mechsafety.github.io</a></dd></div>
+      </dl>
+    </article>
+    <div class="map-card">
+      <div class="kakao-map" aria-label="충북대학교 E8-3동 167호 카카오 지도">
+        <div id="daumRoughmapContainer1785924368966" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+      </div>
+      <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+      <script charset="UTF-8">new daum.roughmap.Lander({timestamp: "1785924368966", key: "s3f29aeh82a", mapWidth: "640", mapHeight: "338"}).render();</script>
+      <a class="map-link" href="{{ contact.map_url }}" target="_blank" rel="noopener">카카오맵에서 열기 ↗</a>
+    </div>
+  </div>
+</div></section>

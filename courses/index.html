@@ -1,0 +1,28 @@
+---
+layout: modern
+title: Courses
+section: courses
+---
+{% assign courses = site.cms_courses | where: 'published', true | sort: 'order' %}
+<section class="page-hero"><div class="shell"><h1 lang="en">Courses</h1></div></section>
+<section class="section alt"><div class="shell"><div class="course-grid">
+  {% for course in courses %}
+  <article class="course-card"><div class="course-card-inner">
+    <div class="course-content">
+      <h2>{{ course.title }}</h2>
+      <p class="course-title-en" lang="en">{{ course.title_en }}</p>
+      <dl class="course-meta">
+        <div><dt>개설 이력</dt><dd class="offering-list">{% for offering in course.offerings %}<span>{{ offering.year }}년 {{ offering.semester }}</span>{% endfor %}</dd></div>
+        <div><dt>수강대상</dt><dd>{{ course.audience }}</dd></div>
+      </dl>
+      <p class="course-description">{{ course.description }}</p>
+    </div>
+    <div class="course-media">
+      {% for image in course.images limit: 2 %}<img class="course-image has-image" src="{{ image | relative_url }}" alt="{{ course.title }} 관련 사진 {{ forloop.index }}">{% endfor %}
+      {% assign image_count = course.images.size | default: 0 %}
+      {% if image_count < 1 %}<div class="course-image" aria-hidden="true"></div>{% endif %}
+      {% if image_count < 2 %}<div class="course-image" aria-hidden="true"></div>{% endif %}
+    </div>
+  </div></article>
+  {% endfor %}
+</div></div></section>

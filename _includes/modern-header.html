@@ -1,0 +1,20 @@
+<header class="site-header">
+  <div class="nav-shell">
+    <a class="brand" href="{{ '/' | relative_url }}"><span>MechSafety</span></a>
+    <nav class="site-nav" lang="en" aria-label="Primary navigation">
+      <a href="{{ '/' | relative_url }}"{% if page.section == 'home' %} aria-current="page"{% endif %}>Home</a>
+      <div class="nav-item">
+        <a href="{{ '/members/' | relative_url }}"{% if page.section == 'members' %} aria-current="page"{% endif %}>Members</a>
+        <div class="subnav">
+          <a href="{{ '/members/#current-members' | relative_url }}">Current Members</a>
+          <a href="{{ '/members/#alumni' | relative_url }}">Alumni</a>
+        </div>
+      </div>
+      <a href="{{ '/research/' | relative_url }}"{% if page.section == 'research' %} aria-current="page"{% endif %}>Research</a>
+      <a href="{{ '/publications/' | relative_url }}"{% if page.section == 'publications' %} aria-current="page"{% endif %}>Publications</a>
+      <a href="{{ '/news/' | relative_url }}"{% if page.section == 'news' %} aria-current="page"{% endif %}>News</a>
+      <a href="{{ '/courses/' | relative_url }}"{% if page.section == 'courses' %} aria-current="page"{% endif %}>Courses</a>
+      <a href="{{ '/contact/' | relative_url }}"{% if page.section == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+    </nav>
+  </div>
+</header>

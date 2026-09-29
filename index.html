@@ -1,0 +1,50 @@
+---
+layout: modern
+title: Home
+section: home
+lang: en
+---
+{% assign home = site.data.cms.home %}
+<section class="hero">
+  <div class="hero-analysis-wall" aria-hidden="true">
+    <figure class="analysis-shot analysis-shot--structure"><img src="{{ '/.design-preview/images/hero-panels/lsdyna-dynamic.webp' | relative_url }}" alt=""></figure>
+    <figure class="analysis-shot analysis-shot--vision"><img src="{{ '/.design-preview/images/hero-panels/vision-fire-detection.webp' | relative_url }}" alt=""></figure>
+    <figure class="analysis-shot analysis-shot--fire"><img src="{{ '/.design-preview/images/hero-panels/fds-aircraft.png' | relative_url }}" alt=""></figure>
+    <figure class="analysis-shot analysis-shot--model"><img src="{{ '/.design-preview/images/hero-panels/ansys-modal.webp' | relative_url }}" alt=""></figure>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">{{ home.eyebrow }}</p>
+      <h1>{{ home.title }}</h1>
+      <p>{{ home.description }}</p>
+    </div>
+  </div>
+</section>
+
+{% if home.recruitment_title or home.recruitment_text %}
+<aside class="recruitment">
+  <div>
+    {% if home.recruitment_title %}<h2>{{ home.recruitment_title }}</h2>{% endif %}
+    {% if home.recruitment_text %}<p lang="ko">{{ home.recruitment_text }}</p>{% endif %}
+  </div>
+</aside>
+{% endif %}
+
+{% assign news_items = site.cms_news | where: 'published', true | sort: 'date' | reverse %}
+<section class="section alt">
+  <div class="shell">
+    <div class="section-heading">
+      <div><p class="section-kicker">Laboratory Updates</p><h2>Latest News</h2></div>
+      <p lang="ko">교육, 학술대회, 세미나, 수상 및 연구실 활동 소식을 전합니다.</p>
+    </div>
+    {% if news_items.size > 0 %}
+    <div class="news-grid" lang="ko">
+      {% for item in news_items limit: 3 %}
+        {% include modern-news-card.html item=item index=forloop.index %}
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-state" lang="ko">새로운 소식을 준비하고 있습니다.</p>
+    {% endif %}
+  </div>
+</section>
