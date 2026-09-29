@@ -152,7 +152,7 @@ content:
             order: desc
         fields:
           - { name: title, label: 과제명, type: string, required: true }
-          - { name: agency, label: 발주 또는 지원기관, type: string, required: true }
+          - { name: agency, label: 발주 또는 지원기관, type: string }
           - { name: program, label: 세부사업명, type: string }
           - { name: start_date, label: 시작일, type: date, required: true }
           - { name: end_date, label: 종료일, type: date, required: true }

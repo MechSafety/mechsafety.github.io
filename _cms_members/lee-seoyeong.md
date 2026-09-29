@@ -1,9 +1,9 @@
 ---
 name: 이서영
 group: Undergraduate Researcher
-degree: ""
-research: 데이터 기반 모델링 및 공학 시뮬레이션
-email: ""
+degree: 학부연구생
+research: 수치해석
+email: syleeqwerty@chungbuk.ac.kr
 photo: /images/members/lee-seoyeong.png
 order: 4
 published: true

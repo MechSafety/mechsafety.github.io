@@ -1,9 +1,9 @@
 ---
 name: 김성현
 group: Undergraduate Researcher
-degree: ""
-research: 구조 안전 및 수치 시뮬레이션
-email: ""
+degree: 학부연구생
+research: 인공지능 응용
+email: blacksh0103@chungbuk.ac.kr
 photo: /images/members/kim-seonghyeon.png
 order: 5
 published: true

@@ -19,8 +19,8 @@ section: projects
           <span class="project-role">{{ item.role }}</span>
         </div>
         <h2>{{ item.title }}</h2>
-        <p class="project-agency">{{ item.agency }}</p>
-        {% if item.program %}<p class="project-program">{{ item.program }}</p>{% endif %}
+        {% if item.agency != empty %}<p class="project-agency">{{ item.agency }}</p>{% endif %}
+        {% if item.program != empty %}<p class="project-program">{{ item.program }}</p>{% endif %}
       </div>
       {% if item.image %}
       <figure class="project-visual"><img src="{{ item.image | relative_url }}" alt="{{ item.title }} 대표 이미지"></figure>
