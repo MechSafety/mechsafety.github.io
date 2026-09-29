@@ -8,17 +8,23 @@ section: projects
 <section class="section alt"><div class="shell">
   <div class="project-list">
     {% for item in projects %}
-    <article class="project-item">
-      <div class="project-period">
-        <time datetime="{{ item.start_date | date: '%Y-%m-%d' }}">{{ item.start_date | date: '%Y. %-m. %-d.' }}</time>
-        <span>-</span>
-        <time datetime="{{ item.end_date | date: '%Y-%m-%d' }}">{{ item.end_date | date: '%Y. %-m. %-d.' }}</time>
-      </div>
+    <article class="project-item{% if item.image %} has-image{% endif %}">
       <div class="project-copy">
+        <div class="project-meta">
+          <span class="project-period">
+            <time datetime="{{ item.start_date | date: '%Y-%m-%d' }}">{{ item.start_date | date: '%Y. %-m.' }}</time>
+            <span aria-hidden="true">–</span>
+            <time datetime="{{ item.end_date | date: '%Y-%m-%d' }}">{{ item.end_date | date: '%Y. %-m.' }}</time>
+          </span>
+          <span class="project-role">{{ item.role }}</span>
+        </div>
         <h2>{{ item.title }}</h2>
-        <p>{{ item.agency }}{% if item.program %}<span> / {{ item.program }}</span>{% endif %}</p>
+        <p class="project-agency">{{ item.agency }}</p>
+        {% if item.program %}<p class="project-program">{{ item.program }}</p>{% endif %}
       </div>
-      <span class="project-role">{{ item.role }}</span>
+      {% if item.image %}
+      <figure class="project-visual"><img src="{{ item.image | relative_url }}" alt="{{ item.title }} 대표 이미지"></figure>
+      {% endif %}
     </article>
     {% endfor %}
   </div>

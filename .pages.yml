@@ -160,6 +160,7 @@ content:
             label: 역할
             type: select
             options: [연구책임자, 공동연구책임자]
+          - { name: image, label: 대표 이미지, type: image }
           - { name: published, label: 홈페이지 공개, type: boolean, required: true }
 
       - name: courses
@@ -192,8 +193,7 @@ content:
               - name: semester
                 label: 학기
                 type: select
-                options: [봄학기, 여름학기, 가을학기, 겨울학기]
-          - { name: description, label: 간단한 설명, type: text, required: true }
+                options: [1학기, 2학기, 하계학기, 동계학기]
           - name: images
             label: 교과목 사진
             type: image
