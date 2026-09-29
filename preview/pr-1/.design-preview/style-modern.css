@@ -337,6 +337,11 @@ body {
 
 .member-list .member-row:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
+.member-data dd {
+  white-space: normal;
+  line-height: 1.45;
+}
+
 .portrait-placeholder {
   background:
     linear-gradient(90deg, transparent 49.6%, rgba(32, 43, 52, 0.09) 50%, transparent 50.4%),
