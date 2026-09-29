@@ -17,6 +17,12 @@
   --font-heading: "Noto Sans KR", "Segoe UI", Arial, sans-serif;
   --font-body: "Noto Sans KR", "Segoe UI", Arial, sans-serif;
   --font-ui: "Noto Sans KR", "Segoe UI", Arial, sans-serif;
+  --type-page-title: clamp(2.6rem, 4vw, 3.65rem);
+  --type-card-title: 1.14rem;
+  --type-card-body: 0.88rem;
+  --card-space-block: 24px;
+  --card-space-inline: 30px;
+  --media-inset: 10px;
 }
 
 body {
@@ -47,11 +53,11 @@ body {
 
 .brand-mark { display: none; }
 
-.site-nav { gap: 26px; }
+.site-nav { gap: 24px; }
 .site-nav a {
   padding: 23px 0 20px;
   color: #42484d;
-  font-size: 0.75rem;
+  font-size: 0.84rem;
   font-weight: 720;
   letter-spacing: 0.015em;
   text-transform: none;
@@ -138,7 +144,7 @@ body {
   max-width: 560px;
   color: #161a1d;
   font-family: var(--font-display);
-  font-size: clamp(3.4rem, 5vw, 4.85rem);
+  font-size: clamp(3rem, 4.3vw, 4.05rem);
   font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 1.05;
@@ -288,7 +294,7 @@ body {
 .read-more { padding-top: 16px; color: #2b343a; font-size: 0.76rem; }
 
 .page-hero {
-  padding: 76px 0 62px;
+  padding: 64px 0 54px;
   border-bottom: 1px solid #aeb2b2;
   color: #171d22;
   background: #e8e7e2;
@@ -297,7 +303,7 @@ body {
 .page-hero h1 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-size: var(--type-page-title);
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 1.05;
@@ -386,6 +392,11 @@ body {
   object-fit: cover;
 }
 
+.portrait-placeholder.has-photo {
+  padding: 8px;
+  background: #e1e2de;
+}
+
 .member-placeholder-card .alumni-silhouette {
   background: #dcddd9;
 }
@@ -459,8 +470,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.course-heading h2 { margin: 0 0 2px; font-size: 1.28rem; line-height: 1.35; }
-.course-title-en { margin: 0; color: #586168; font-size: 0.86rem; font-weight: 550; }
+.course-heading h2 { margin: 0 0 2px; font-size: var(--type-card-title); line-height: 1.35; }
+.course-title-en { margin: 0; color: #586168; font-size: 0.82rem; font-weight: 550; }
 
 .course-meta {
   display: flex;
@@ -505,9 +516,10 @@ body {
 
 .course-media {
   display: grid;
-  gap: 1px;
+  gap: var(--media-inset);
+  padding: var(--media-inset);
   border-left: 1px solid #c5c8c6;
-  background: #c5c8c6;
+  background: #e1e2de;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -518,6 +530,7 @@ body {
   display: block;
   width: 100%;
   height: 100%;
+  border: 1px solid #c5c8c6;
   object-fit: cover;
 }
 
@@ -570,13 +583,24 @@ body {
   height: 100%;
   object-fit: cover;
 }
+.research-visual.has-image { padding: var(--media-inset); }
 .research-placeholder-1::after { content: "01"; }
 .research-placeholder-2::after { content: "02"; }
 .research-placeholder-3::after { content: "03"; }
 
 .research-list { gap: 24px; border: 0; background: transparent; }
-.research-item { border: 1px solid #c5c8c6; }
-.research-copy h2 { font-family: var(--font-heading); font-weight: 680; letter-spacing: -0.03em; }
+.research-item { min-height: 218px; border: 1px solid #c5c8c6; }
+.research-visual { min-height: 218px; }
+.research-copy { padding: var(--card-space-block) var(--card-space-inline); }
+.research-copy h2 {
+  margin: 5px 0 9px;
+  font-family: var(--font-heading);
+  font-size: var(--type-card-title);
+  font-weight: 680;
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+}
+.research-copy p { font-size: var(--type-card-body); line-height: 1.65; }
 .research-number,
 .course-code { color: #8c4437; }
 
@@ -588,8 +612,8 @@ body {
 .publication-group + .publication-group { margin-top: 58px; }
 
 .publication-group > h2 {
-  margin: 0 0 23px;
-  padding-bottom: 15px;
+  margin: 0;
+  padding-bottom: 12px;
   border-bottom: 1px solid #b7baba;
   font-family: var(--font-heading);
   font-size: 1.55rem;
@@ -658,7 +682,7 @@ body {
   display: grid;
   overflow: hidden;
   align-items: stretch;
-  padding: 27px 30px;
+  padding: 0;
   border: 1px solid #c7cac8;
   background: #fbfaf7;
   grid-template-columns: 1fr;
@@ -671,7 +695,10 @@ body {
   gap: 0;
 }
 
-.project-item.has-image .project-copy { padding: 27px 30px; }
+.project-copy,
+.project-item.has-image .project-copy {
+  padding: var(--card-space-block) var(--card-space-inline);
+}
 
 .project-meta {
   display: flex;
@@ -695,11 +722,12 @@ body {
   max-width: 890px;
   margin: 0 0 10px;
   font-family: var(--font-heading);
-  font-size: 1.12rem;
+  font-size: var(--type-card-title);
   font-weight: 650;
   letter-spacing: -0.02em;
   line-height: 1.48;
 }
+.project-copy h2:last-child { margin-bottom: 0; }
 
 .project-copy .project-agency {
   margin: 0;
@@ -728,6 +756,7 @@ body {
 .project-visual {
   min-height: 170px;
   margin: 0;
+  padding: var(--media-inset);
   border-left: 1px solid #c7cac8;
   background: #e2e3de;
 }
@@ -825,7 +854,7 @@ body {
   }
 
   .hero-copy { max-width: 100%; }
-  .hero h1 { max-width: 100%; font-size: 3.15rem; }
+  .hero h1 { max-width: 100%; font-size: 2.7rem; }
   .hero p { color: #4d555b; }
 
   .hero-analysis-wall {
