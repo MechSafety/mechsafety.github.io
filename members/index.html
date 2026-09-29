@@ -22,12 +22,17 @@ section: members
     {% endfor %}
   </div>
   {% assign alumni = members | where: 'group', 'Alumni' %}
-  {% if alumni.size > 0 %}
   <section class="member-group" id="alumni">
     <h2 lang="en">Alumni</h2>
     <div class="member-list">
-      {% for member in alumni %}{% include modern-member-card.html member=member %}{% endfor %}
+      {% if alumni.size > 0 %}
+        {% for member in alumni %}{% include modern-member-card.html member=member %}{% endfor %}
+      {% else %}
+        <article class="member-row member-placeholder-card" aria-label="Alumni profile placeholder">
+          <div class="portrait-placeholder alumni-silhouette" role="img" aria-label="Alumni profile placeholder"></div>
+          <div class="member-info"><h3 lang="en">Alumni</h3></div>
+        </article>
+      {% endif %}
     </div>
   </section>
-  {% endif %}
 </div></section>

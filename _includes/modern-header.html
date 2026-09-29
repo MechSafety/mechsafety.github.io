@@ -12,7 +12,13 @@
       </div>
       <a href="{{ '/research/' | relative_url }}"{% if page.section == 'research' %} aria-current="page"{% endif %}>Research</a>
       <a href="{{ '/projects/' | relative_url }}"{% if page.section == 'projects' %} aria-current="page"{% endif %}>Projects</a>
-      <a href="{{ '/publications/' | relative_url }}"{% if page.section == 'publications' %} aria-current="page"{% endif %}>Publications</a>
+      <div class="nav-item">
+        <a href="{{ '/publications/' | relative_url }}"{% if page.section == 'publications' %} aria-current="page"{% endif %}>Publications</a>
+        <div class="subnav">
+          <a href="{{ '/publications/#scie-publications' | relative_url }}">SCIE</a>
+          <a href="{{ '/publications/#domestic-publications' | relative_url }}">Domestic Publications</a>
+        </div>
+      </div>
       <a href="{{ '/news/' | relative_url }}"{% if page.section == 'news' %} aria-current="page"{% endif %}>News</a>
       <a href="{{ '/courses/' | relative_url }}"{% if page.section == 'courses' %} aria-current="page"{% endif %}>Courses</a>
       <a href="{{ '/contact/' | relative_url }}"{% if page.section == 'contact' %} aria-current="page"{% endif %}>Contact</a>
