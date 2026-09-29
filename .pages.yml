@@ -23,12 +23,19 @@ content:
 
       - name: news
         label: News
-        type: file
-        path: _data/cms/news.json
-        format: json
-        list: true
+        type: collection
+        path: _cms_news
+        format: yaml-frontmatter
+        filename: "{year}-{month}-{day}-{title}.md"
+        view:
+          fields: [title, date, category, published]
+          primary: title
+          sort: [date, title]
+          search: [title, category, summary]
+          default:
+            sort: date
+            order: desc
         fields:
-          - { name: id, label: 주소용 이름, type: string, required: true }
           - { name: title, label: 제목, type: string, required: true }
           - { name: date, label: 날짜, type: date, required: true }
           - name: category
@@ -40,7 +47,7 @@ content:
             label: 본문
             type: rich-text
             options:
-              format: html
+              format: markdown
               switcher: false
           - name: images
             label: 사진
@@ -51,10 +58,18 @@ content:
 
       - name: members
         label: Members
-        type: file
-        path: _data/cms/members.json
-        format: json
-        list: true
+        type: collection
+        path: _cms_members
+        format: yaml-frontmatter
+        filename: "{name}.md"
+        view:
+          fields: [name, group, order, published]
+          primary: name
+          sort: [order, group, name]
+          search: [name, group, research]
+          default:
+            sort: order
+            order: asc
         fields:
           - { name: name, label: 이름, type: string, required: true }
           - name: group
@@ -70,10 +85,18 @@ content:
 
       - name: research
         label: Research
-        type: file
-        path: _data/cms/research.json
-        format: json
-        list: true
+        type: collection
+        path: _cms_research
+        format: yaml-frontmatter
+        filename: "{title}.md"
+        view:
+          fields: [title, order, published]
+          primary: title
+          sort: [order, title]
+          search: [title, summary]
+          default:
+            sort: order
+            order: asc
         fields:
           - { name: title, label: 연구 분야명, type: string, required: true }
           - { name: summary, label: 설명, type: text, required: true }
@@ -88,10 +111,19 @@ content:
 
       - name: publications
         label: Publications
-        type: file
-        path: _data/cms/publications.json
-        format: json
-        list: true
+        type: collection
+        path: _cms_publications
+        format: yaml-frontmatter
+        filename: "{year}-{title}.md"
+        exclude: [.gitkeep]
+        view:
+          fields: [title, year, publication_type, published]
+          primary: title
+          sort: [year, title]
+          search: [title, authors, venue]
+          default:
+            sort: year
+            order: desc
         fields:
           - { name: year, label: 연도, type: number, required: true }
           - { name: title, label: 논문 제목, type: string, required: true }
@@ -102,15 +134,22 @@ content:
             type: select
             options: [Journal, Conference, Patent, Other]
           - { name: link, label: 논문 링크, type: string }
-          - { name: order, label: 표시 순서, type: number, required: true }
           - { name: published, label: 홈페이지 공개, type: boolean, required: true }
 
       - name: courses
         label: Courses
-        type: file
-        path: _data/cms/courses.json
-        format: json
-        list: true
+        type: collection
+        path: _cms_courses
+        format: yaml-frontmatter
+        filename: "{title}.md"
+        view:
+          fields: [title, audience, order, published]
+          primary: title
+          sort: [order, title]
+          search: [title, title_en, audience]
+          default:
+            sort: order
+            order: asc
         fields:
           - { name: title, label: 과목명, type: string, required: true }
           - { name: title_en, label: 과목명 영문, type: string, required: true }
