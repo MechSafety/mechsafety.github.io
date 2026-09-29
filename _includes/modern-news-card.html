@@ -1,0 +1,15 @@
+<article class="news-card">
+  <a href="{{ include.item.url | relative_url }}">
+    {% if include.item.images and include.item.images.size > 0 %}
+      <div class="news-image has-image"><img src="{{ include.item.images[0] | relative_url }}" alt=""><span>{{ include.item.category }}</span></div>
+    {% else %}
+      <div class="news-image placeholder-{{ include.index | default: 1 }}"><span>{{ include.item.category }}</span></div>
+    {% endif %}
+    <div class="news-content">
+      <time class="news-date" datetime="{{ include.item.date }}">{{ include.item.date | date: '%Y. %-m. %-d.' }}</time>
+      <h3>{{ include.item.title }}</h3>
+      <p>{{ include.item.summary }}</p>
+      <span class="read-more">자세히 보기 →</span>
+    </div>
+  </a>
+</article>

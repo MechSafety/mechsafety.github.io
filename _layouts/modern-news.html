@@ -1,0 +1,20 @@
+---
+layout: modern
+section: news
+---
+<article class="section"><div class="content-shell">
+  <a class="back-link" href="{{ '/news/' | relative_url }}">← 소식 목록으로 돌아가기</a>
+  <h1>{{ page.title }}</h1>
+  <div class="article-meta">
+    <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%Y. %-m. %-d.' }}</time>
+    {% if page.category %}<span>{{ page.category }}</span>{% endif %}
+  </div>
+  <div class="news-story">
+    {% if content != '' %}<div class="article-body">{{ content }}</div>{% endif %}
+    {% if page.images and page.images.size > 0 %}
+    <div class="story-gallery" aria-label="활동 사진 모음">
+      {% for image in page.images %}<img class="story-image" src="{{ image | relative_url }}" alt="{{ page.title }} 사진 {{ forloop.index }}">{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div></article>

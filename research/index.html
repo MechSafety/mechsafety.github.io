@@ -1,0 +1,23 @@
+---
+layout: modern
+title: Research
+section: research
+---
+{% assign research_items = site.cms_research | where: 'published', true | sort: 'order' %}
+<section class="page-hero"><div class="shell"><h1 lang="en">Research</h1></div></section>
+<section class="section alt"><div class="shell"><div class="research-list">
+  {% for item in research_items %}
+  <article class="research-item">
+    {% if item.images and item.images.size > 0 %}
+      <div class="research-visual has-image"><img src="{{ item.images[0] | relative_url }}" alt=""></div>
+    {% else %}
+      <div class="research-visual research-placeholder-{{ forloop.index }}" aria-hidden="true"></div>
+    {% endif %}
+    <div class="research-copy">
+      <span class="research-number" lang="en">RESEARCH AREA {{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+      <h2 lang="en">{{ item.title }}</h2>
+      <p>{{ item.summary }}</p>
+    </div>
+  </article>
+  {% endfor %}
+</div></div></section>

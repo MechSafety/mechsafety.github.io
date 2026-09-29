@@ -1,0 +1,23 @@
+---
+layout: modern
+title: Publications
+section: publications
+lang: en
+---
+{% assign publications = site.cms_publications | where: 'published', true | sort: 'year' | reverse %}
+<section class="page-hero"><div class="shell"><h1>Publications</h1></div></section>
+<section class="section alt"><div class="shell">
+  {% if publications.size > 0 %}
+  <div class="publication-list">
+    {% for item in publications %}
+    {% if item.link %}<a class="publication-item publication-link" href="{{ item.link }}" target="_blank" rel="noopener">{% else %}<article class="publication-item">{% endif %}
+      <div class="publication-year">{{ item.year }}</div>
+      <div><h2>{{ item.title }}</h2><p>{{ item.authors }}{% if item.venue %} · <em>{{ item.venue }}</em>{% endif %}</p></div>
+      {% if item.publication_type %}<span class="publication-type">{{ item.publication_type }}</span>{% endif %}
+    {% if item.link %}</a>{% else %}</article>{% endif %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty-state">Publications will be updated.</p>
+  {% endif %}
+</div></section>

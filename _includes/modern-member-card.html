@@ -1,0 +1,15 @@
+<article class="member-row">
+  {% if include.member.photo %}
+    <div class="portrait-placeholder has-photo"><img src="{{ include.member.photo | relative_url }}" alt="{{ include.member.name }} 사진"></div>
+  {% else %}
+    <div class="portrait-placeholder" role="img" aria-label="{{ include.member.name }} 사진"></div>
+  {% endif %}
+  <div class="member-info">
+    <h3>{{ include.member.name }}</h3>
+    <dl class="member-data">
+      {% if include.member.degree %}<div><dt>학위</dt><dd>{{ include.member.degree }}</dd></div>{% endif %}
+      {% if include.member.research %}<div><dt>연구분야</dt><dd>{{ include.member.research }}</dd></div>{% endif %}
+      {% if include.member.email %}<div><dt>이메일</dt><dd><a href="mailto:{{ include.member.email }}">{{ include.member.email }}</a></dd></div>{% endif %}
+    </dl>
+  </div>
+</article>
