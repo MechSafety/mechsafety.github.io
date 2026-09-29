@@ -14,10 +14,10 @@ section: courses
         <h2>{{ course.title }}</h2>
         <p class="course-title-en" lang="en">{{ course.title_en }}</p>
       </header>
-      {% if course.offerings.size > 0 or course.audience %}
+      {% if course.offerings.size > 0 or course.audience != empty %}
       <dl class="course-meta">
         {% if course.offerings.size > 0 %}<div><dt>개설</dt><dd class="offering-list">{% for offering in course.offerings %}<span>{{ offering.year }}년 {{ offering.semester }}</span>{% endfor %}</dd></div>{% endif %}
-        {% if course.audience %}<div><dt>수강대상</dt><dd>{{ course.audience }}</dd></div>{% endif %}
+        {% if course.audience != empty %}<div><dt>수강대상</dt><dd>{{ course.audience }}</dd></div>{% endif %}
       </dl>
       {% endif %}
     </div>

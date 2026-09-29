@@ -392,24 +392,26 @@ body {
   box-shadow: none;
 }
 
-.course-card { min-height: 176px; border: 1px solid #c5c8c6; transition: none; }
+.course-card { min-height: 142px; border: 1px solid #c5c8c6; transition: none; }
+.course-card.has-media { min-height: 176px; }
 .course-card:hover { transform: none; box-shadow: none; }
 
 .course-card-inner {
   display: grid;
   height: 100%;
-  min-height: 176px;
+  min-height: 142px;
   grid-template-columns: minmax(0, 1fr);
 }
 
 .course-card.has-media .course-card-inner {
+  min-height: 176px;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 36%);
 }
 
 .course-content {
   display: flex;
   min-height: 0;
-  padding: 25px 30px;
+  padding: 22px 30px;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -420,7 +422,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 9px 28px;
-  margin: 24px 0 0;
+  margin: 18px 0 0;
 }
 
 .course-meta > div {
@@ -591,16 +593,16 @@ body {
 
 .publication-authors {
   margin: 7px 0 0;
-  color: #424a4f;
-  font-size: 0.88rem;
+  color: #30383d;
+  font-size: 0.9rem;
   font-weight: 500;
   line-height: 1.55;
 }
 
 .publication-venue {
   margin: 4px 0 0;
-  color: #5c6469;
-  font-size: 0.86rem;
+  color: #4f585d;
+  font-size: 0.88rem;
   line-height: 1.5;
 }
 
