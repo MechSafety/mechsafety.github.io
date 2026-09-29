@@ -11,9 +11,12 @@ lang: en
   <div class="publication-list">
     {% for item in publications %}
       {% if item.link %}<a class="publication-item publication-link" href="{{ item.link }}" target="_blank" rel="noopener">{% else %}<article class="publication-item">{% endif %}
-        <h2>{{ item.title }}</h2>
-        <p class="publication-authors">{{ item.authors }}</p>
-        <p class="publication-venue">{% if item.venue %}{{ item.venue }}{% endif %}{% if item.venue and item.year %}<span aria-hidden="true">, </span>{% endif %}{% if item.year %}{{ item.year }}{% endif %}</p>
+        <span class="publication-index">{{ publications.size | minus: forloop.index0 }}</span>
+        <div class="publication-copy">
+          <h2>{{ item.title }}</h2>
+          <p class="publication-authors">{{ item.authors }}</p>
+          <p class="publication-venue">{% if item.venue %}{{ item.venue }}{% endif %}{% if item.venue and item.year %}<span aria-hidden="true">, </span>{% endif %}{% if item.year %}{{ item.year }}{% endif %}</p>
+        </div>
       {% if item.link %}</a>{% else %}</article>{% endif %}
     {% endfor %}
   </div>
