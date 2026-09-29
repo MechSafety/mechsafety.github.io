@@ -153,7 +153,7 @@ content:
         fields:
           - { name: title, label: 과목명, type: string, required: true }
           - { name: title_en, label: 과목명 영문, type: string, required: true }
-          - { name: audience, label: 수강대상, type: string, required: true }
+          - { name: audience, label: 수강대상, type: string }
           - name: offerings
             label: 개설 이력
             type: object

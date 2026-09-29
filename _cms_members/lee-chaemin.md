@@ -1,11 +1,10 @@
 ---
 name: 이채민
 group: Principal Investigator
-degree: 기계공학 박사
-research: 기계 안전, 전산역학, 수치 시뮬레이션
+degree: 한국과학기술원(KAIST) 기계공학 박사
+research: 전산역학, 다물리 시뮬레이션, 인공지능 기반 진단 및 예지, 구조 건전성 및 위험성 평가
 email: clee@cbnu.ac.kr
 photo: ""
 order: 1
 published: true
 ---
-

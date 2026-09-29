@@ -1,8 +1,7 @@
 ---
-title: Data-Informed Engineering Methods
-summary: 예측 성능과 계산 효율을 높일 수 있도록 물리 기반 해석과 데이터 기반 방법을 결합합니다.
+title: AI-Assisted Diagnostics and Prognostics
+summary: 머신러닝, 컴퓨터 비전과 데이터 분석을 활용해 상태를 진단하고 고장을 예측하며 구조 건전성과 위험을 평가합니다.
 images: []
 order: 3
 published: true
 ---
-
