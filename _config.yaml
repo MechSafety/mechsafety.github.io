@@ -48,6 +48,8 @@ collections:
     output: false
   cms_research:
     output: false
+  cms_projects:
+    output: false
   cms_publications:
     output: false
   cms_courses:

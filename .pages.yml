@@ -136,6 +136,32 @@ content:
           - { name: link, label: 논문 링크, type: string }
           - { name: published, label: 홈페이지 공개, type: boolean, required: true }
 
+      - name: projects
+        label: Projects
+        type: collection
+        path: _cms_projects
+        format: yaml-frontmatter
+        filename: "{start_date}-{title}.md"
+        view:
+          fields: [title, agency, start_date, end_date, role, published]
+          primary: title
+          sort: [start_date, end_date, title]
+          search: [title, agency, program]
+          default:
+            sort: start_date
+            order: desc
+        fields:
+          - { name: title, label: 과제명, type: string, required: true }
+          - { name: agency, label: 발주 또는 지원기관, type: string, required: true }
+          - { name: program, label: 세부사업명, type: string }
+          - { name: start_date, label: 시작일, type: date, required: true }
+          - { name: end_date, label: 종료일, type: date, required: true }
+          - name: role
+            label: 역할
+            type: select
+            options: [연구책임자, 공동연구책임자]
+          - { name: published, label: 홈페이지 공개, type: boolean, required: true }
+
       - name: courses
         label: Courses
         type: collection

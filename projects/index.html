@@ -1,0 +1,25 @@
+---
+layout: modern
+title: Projects
+section: projects
+---
+{% assign projects = site.cms_projects | where: 'published', true | sort: 'start_date' | reverse %}
+<section class="page-hero"><div class="shell"><h1 lang="en">Projects</h1></div></section>
+<section class="section alt"><div class="shell">
+  <div class="project-list">
+    {% for item in projects %}
+    <article class="project-item">
+      <div class="project-period">
+        <time datetime="{{ item.start_date | date: '%Y-%m-%d' }}">{{ item.start_date | date: '%Y. %-m. %-d.' }}</time>
+        <span>-</span>
+        <time datetime="{{ item.end_date | date: '%Y-%m-%d' }}">{{ item.end_date | date: '%Y. %-m. %-d.' }}</time>
+      </div>
+      <div class="project-copy">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.agency }}{% if item.program %}<span> / {{ item.program }}</span>{% endif %}</p>
+      </div>
+      <span class="project-role">{{ item.role }}</span>
+    </article>
+    {% endfor %}
+  </div>
+</div></section>
