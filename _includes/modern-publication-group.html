@@ -1,0 +1,18 @@
+{% assign publication_items = include.items %}
+{% if publication_items.size > 0 %}
+<section class="publication-group" aria-labelledby="{{ include.id }}">
+  <h2 id="{{ include.id }}">{{ include.label }}</h2>
+  <div class="publication-list">
+    {% for item in publication_items %}
+      {% if item.link %}<a class="publication-item publication-link" href="{{ item.link }}" target="_blank" rel="noopener">{% else %}<article class="publication-item">{% endif %}
+        <span class="publication-index">{{ publication_items.size | minus: forloop.index0 }}</span>
+        <div class="publication-copy">
+          <h3>{{ item.title }}</h3>
+          <p class="publication-authors">{{ item.authors }}</p>
+          <p class="publication-venue">{% if item.venue %}{{ item.venue }}{% endif %}{% if item.venue and item.year %}<span aria-hidden="true">, </span>{% endif %}{% if item.year %}{{ item.year }}{% endif %}</p>
+        </div>
+      {% if item.link %}</a>{% else %}</article>{% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

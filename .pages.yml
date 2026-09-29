@@ -117,7 +117,7 @@ content:
         filename: "{year}-{title}.md"
         exclude: [.gitkeep]
         view:
-          fields: [title, year, publication_type, published]
+          fields: [title, year, publication_group, published]
           primary: title
           sort: [year, title]
           search: [title, authors, venue]
@@ -126,6 +126,11 @@ content:
             order: desc
         fields:
           - { name: year, label: 연도, type: number, required: true }
+          - name: publication_group
+            label: 논문 구분
+            type: select
+            options: [SCIE, 국내 논문]
+            required: true
           - { name: title, label: 논문 제목, type: string, required: true }
           - { name: authors, label: 저자, type: string, required: true }
           - { name: venue, label: 학술지 또는 학술대회, type: string }
