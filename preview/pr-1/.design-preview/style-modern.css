@@ -554,34 +554,45 @@ body {
 
 .publication-item {
   position: relative;
-  display: block;
-  padding: 19px 8px 20px;
+  display: grid;
+  align-items: start;
+  padding: 14px 6px 15px;
   border: 0;
   border-bottom: 1px solid #d2d4d1;
   margin: 0;
   background: transparent;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 12px;
 }
 
-.publication-item h2 {
+.publication-index {
+  padding-top: 1px;
+  color: #6c7479;
+  font-size: 0.77rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.publication-list .publication-item h2 {
   margin: 0;
   color: #1d2226;
   font-family: var(--font-heading);
   font-size: 0.98rem;
   font-weight: 600;
   letter-spacing: -0.015em;
-  line-height: 1.32;
+  line-height: 1.28;
 }
 
-.publication-authors {
-  margin: 9px 0 0;
+.publication-item .publication-authors {
+  margin: 7px 0 0;
   color: #30383d;
   font-size: 0.89rem;
   font-weight: 500;
   line-height: 1.4;
 }
 
-.publication-venue {
-  margin: 6px 0 0;
+.publication-item .publication-venue {
+  margin: 5px 0 0;
   color: #485157;
   font-size: 0.87rem;
   font-style: normal;
