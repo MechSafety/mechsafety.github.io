@@ -1,0 +1,52 @@
+[
+  {
+    "name": "이채민",
+    "group": "Principal Investigator",
+    "degree": "기계공학 박사",
+    "research": "기계 안전, 전산역학, 수치 시뮬레이션",
+    "email": "clee@cbnu.ac.kr",
+    "photo": "",
+    "order": 1,
+    "published": true
+  },
+  {
+    "name": "홍동현",
+    "group": "M.S. Student",
+    "degree": "",
+    "research": "유한요소해석 및 구조 안전",
+    "email": "",
+    "photo": "",
+    "order": 2,
+    "published": true
+  },
+  {
+    "name": "남윤희",
+    "group": "M.S. Student",
+    "degree": "",
+    "research": "전산역학 및 동적 해석",
+    "email": "",
+    "photo": "",
+    "order": 3,
+    "published": true
+  },
+  {
+    "name": "이서영",
+    "group": "Undergraduate Researcher",
+    "degree": "",
+    "research": "데이터 기반 모델링 및 공학 시뮬레이션",
+    "email": "",
+    "photo": "",
+    "order": 4,
+    "published": true
+  },
+  {
+    "name": "김성현",
+    "group": "Undergraduate Researcher",
+    "degree": "",
+    "research": "구조 안전 및 수치 시뮬레이션",
+    "email": "",
+    "photo": "",
+    "order": 5,
+    "published": true
+  }
+]

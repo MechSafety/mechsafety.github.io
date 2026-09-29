@@ -1,0 +1,161 @@
+media:
+  input: images/uploads
+  output: /images/uploads
+  rename: safe
+  extensions: [png, jpg, jpeg, webp]
+
+content:
+  - name: website
+    label: 홈페이지 관리
+    type: group
+    items:
+      - name: home
+        label: Home
+        type: file
+        path: _data/cms/home.json
+        format: json
+        fields:
+          - { name: eyebrow, label: 상단 분야명, type: string, required: true }
+          - { name: title, label: 대표 문구, type: string, required: true }
+          - { name: description, label: 연구실 소개, type: text, required: true }
+          - { name: recruitment_title, label: 학생 모집 영문, type: string }
+          - { name: recruitment_text, label: 학생 모집 국문, type: text }
+
+      - name: news
+        label: News
+        type: file
+        path: _data/cms/news.json
+        format: json
+        list: true
+        fields:
+          - { name: id, label: 주소용 이름, type: string, required: true }
+          - { name: title, label: 제목, type: string, required: true }
+          - { name: date, label: 날짜, type: date, required: true }
+          - name: category
+            label: 분류
+            type: select
+            options: [교육, 학술대회, 세미나, 수상, 워크숍, 연구실 활동]
+          - { name: summary, label: 목록 설명, type: text, required: true }
+          - name: body
+            label: 본문
+            type: rich-text
+            options:
+              format: html
+              switcher: false
+          - name: images
+            label: 사진
+            type: image
+            options:
+              multiple: true
+          - { name: published, label: 홈페이지 공개, type: boolean, required: true }
+
+      - name: members
+        label: Members
+        type: file
+        path: _data/cms/members.json
+        format: json
+        list: true
+        fields:
+          - { name: name, label: 이름, type: string, required: true }
+          - name: group
+            label: 구분
+            type: select
+            options: [Principal Investigator, Postdoctoral Researcher, Ph.D. Student, M.S. Student, Undergraduate Researcher, Alumni]
+          - { name: degree, label: 학위, type: string }
+          - { name: research, label: 연구분야, type: text }
+          - { name: email, label: 이메일, type: string }
+          - { name: photo, label: 사진, type: image }
+          - { name: order, label: 표시 순서, type: number, required: true }
+          - { name: published, label: 홈페이지 공개, type: boolean, required: true }
+
+      - name: research
+        label: Research
+        type: file
+        path: _data/cms/research.json
+        format: json
+        list: true
+        fields:
+          - { name: title, label: 연구 분야명, type: string, required: true }
+          - { name: summary, label: 설명, type: text, required: true }
+          - name: images
+            label: 대표 이미지
+            type: image
+            options:
+              multiple:
+                max: 3
+          - { name: order, label: 표시 순서, type: number, required: true }
+          - { name: published, label: 홈페이지 공개, type: boolean, required: true }
+
+      - name: publications
+        label: Publications
+        type: file
+        path: _data/cms/publications.json
+        format: json
+        list: true
+        fields:
+          - { name: year, label: 연도, type: number, required: true }
+          - { name: title, label: 논문 제목, type: string, required: true }
+          - { name: authors, label: 저자, type: string, required: true }
+          - { name: venue, label: 학술지 또는 학술대회, type: string }
+          - name: publication_type
+            label: 구분
+            type: select
+            options: [Journal, Conference, Patent, Other]
+          - { name: link, label: 논문 링크, type: string }
+          - { name: order, label: 표시 순서, type: number, required: true }
+          - { name: published, label: 홈페이지 공개, type: boolean, required: true }
+
+      - name: courses
+        label: Courses
+        type: file
+        path: _data/cms/courses.json
+        format: json
+        list: true
+        fields:
+          - { name: title, label: 과목명, type: string, required: true }
+          - { name: title_en, label: 과목명 영문, type: string, required: true }
+          - { name: audience, label: 수강대상, type: string, required: true }
+          - name: offerings
+            label: 개설 이력
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{year}년 {semester}"
+            fields:
+              - { name: year, label: 연도, type: number, required: true }
+              - name: semester
+                label: 학기
+                type: select
+                options: [봄학기, 여름학기, 가을학기, 겨울학기]
+          - { name: description, label: 간단한 설명, type: text, required: true }
+          - name: images
+            label: 교과목 사진
+            type: image
+            options:
+              multiple:
+                max: 2
+          - { name: order, label: 표시 순서, type: number, required: true }
+          - { name: published, label: 홈페이지 공개, type: boolean, required: true }
+
+      - name: contact
+        label: Contact
+        type: file
+        path: _data/cms/contact.json
+        format: json
+        fields:
+          - { name: professor, label: 지도교수, type: string, required: true }
+          - { name: affiliation, label: 소속, type: string, required: true }
+          - { name: address, label: 주소, type: text, required: true }
+          - { name: email, label: 이메일, type: string, required: true }
+          - { name: website, label: 홈페이지 주소, type: string, required: true }
+          - { name: map_url, label: 카카오맵 주소, type: string, required: true }
+
+settings:
+  content:
+    merge: true
+  commit:
+    templates:
+      create: "Add {name} via Pages CMS"
+      update: "Update {name} via Pages CMS"
+      delete: "Remove {name} via Pages CMS"

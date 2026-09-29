@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Mechanical Safety",
+    "summary": "파손, 손상, 충격 및 구조 건전성을 이해하여 기계 시스템의 안전성과 신뢰성을 높이는 방법을 연구합니다.",
+    "images": [],
+    "order": 1,
+    "published": true
+  },
+  {
+    "title": "Computational Modeling and Simulation",
+    "summary": "복잡한 기계 거동을 설명하고 공학적 의사결정을 지원하는 수치 모델과 고정밀 시뮬레이션 기법을 개발합니다.",
+    "images": [],
+    "order": 2,
+    "published": true
+  },
+  {
+    "title": "Data-Informed Engineering Methods",
+    "summary": "예측 성능과 계산 효율을 높일 수 있도록 물리 기반 해석과 데이터 기반 방법을 결합합니다.",
+    "images": [],
+    "order": 3,
+    "published": true
+  }
+]
