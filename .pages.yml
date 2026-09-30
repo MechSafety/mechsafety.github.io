@@ -213,7 +213,6 @@ content:
         path: _data/cms/contact.json
         format: json
         fields:
-          - { name: professor, label: 지도교수, type: string, required: true }
           - { name: affiliation, label: 소속, type: string, required: true }
           - { name: address, label: 주소, type: text, required: true }
           - { name: email, label: 이메일, type: string, required: true }
