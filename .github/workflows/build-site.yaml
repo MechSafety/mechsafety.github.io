@@ -18,6 +18,11 @@ permissions:
 jobs:
   build-site:
     runs-on: ubuntu-latest
+    # Live publishing and preview cleanup share the gh-pages branch.
+    concurrency:
+      group: gh-pages-publish
+      cancel-in-progress: false
+      queue: max
 
     steps:
       - name: Debug dump
