@@ -2,11 +2,7 @@ name: on-schedule
 run-name: on schedule
 
 on:
-  schedule:
-    # weekly
-    - cron: "0 0 * * 1"
-
-  # run if user manually requests it
+  # Legacy citation importer is manual-only; publications are managed in Pages CMS.
   workflow_dispatch:
 
 permissions:

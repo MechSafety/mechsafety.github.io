@@ -39,12 +39,11 @@ defaults:
       layout: modern-news
 
 collections:
-  # generate page for each member
+  # Legacy template collections are not part of the public site.
   members:
-    output: true
-  # generate page for each post
+    output: false
   posts:
-    output: true
+    output: false
   cms_news:
     output: true
     permalink: /news/:name/
@@ -64,7 +63,6 @@ plugins:
   - jekyll-spaceship
   - jekyll-sitemap
   - jekyll-redirect-from
-  - jekyll-feed
   - jekyll-last-modified-at
 
 # code block syntax highlighting
@@ -89,6 +87,10 @@ exclude:
   - LICENSE.md
   - CITATION.cff
   - tmp
+  - _members
+  - _posts
+  - team
+  - blog
 
 # configure jekyll spaceship
 jekyll-spaceship:
