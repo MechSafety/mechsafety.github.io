@@ -4,7 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ page.description | default: site.description | escape }}">
-    <title>{% if page.title and page.title != 'Home' %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta property="og:site_name" content="{{ site.title | escape }}">
+    <title>{% if page.title and page.title != 'Home' %}{{ page.title }} | {% endif %}{{ site.title }}{% if page.section == 'home' %} | 충북대학교{% endif %}</title>
+    {% if page.section == 'home' and site.baseurl == '' %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": {{ site.title | jsonify }},
+        "alternateName": [{{ site.lab_name | jsonify }}, {{ site.lab_name_ko | jsonify }}],
+        "url": {{ '/' | absolute_url | jsonify }}
+      }
+    </script>
+    {% endif %}
     <link rel="stylesheet" href="{{ '/.design-preview/style-modern.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   </head>
   <body>

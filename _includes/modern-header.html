@@ -1,6 +1,6 @@
 <header class="site-header">
   <div class="nav-shell">
-    <a class="brand" href="{{ '/' | relative_url }}"><span>{{ site.title }}</span></a>
+    <a class="brand" href="{{ '/' | relative_url }}" title="{{ site.lab_name | escape }}"><span>{{ site.title }}</span></a>
     <nav class="site-nav" lang="en" aria-label="Primary navigation">
       <a href="{{ '/' | relative_url }}"{% if page.section == 'home' %} aria-current="page"{% endif %}>Home</a>
       <div class="nav-item">

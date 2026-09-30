@@ -1,7 +1,11 @@
 # site properties and page defaults
-title: MechSafety
-subtitle: 
-description: Mechanical safety research through computational modeling and simulation.
+title: MSCS Lab
+lab_name: Mechanical Safety and Computational Simulation Laboratory
+lab_name_ko: 기계안전 및 전산시뮬레이션 연구실
+subtitle: 충북대학교 안전공학과
+description: MSCS Lab, 기계안전 및 전산시뮬레이션 연구실, 충북대학교 안전공학과. Our research aims to understand physical phenomena and address engineering problems.
+url: https://mechsafety.github.io
+baseurl: ""
 header: images/background.jpg
 footer: images/background.jpg
 proofer: false

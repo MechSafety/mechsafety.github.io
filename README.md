@@ -3,7 +3,11 @@
   ![on-pull-request](../../actions/workflows/on-pull-request.yaml/badge.svg)
   ![on-schedule](../../actions/workflows/on-schedule.yaml/badge.svg)
 
-  # MechSafety's Website
+  # MSCS Lab Website
+
+  Mechanical Safety and Computational Simulation Laboratory
+
+  기계안전 및 전산시뮬레이션 연구실, 충북대학교 안전공학과
 
   Visit **[mechsafety.github.io](https://mechsafety.github.io)** 🚀
 

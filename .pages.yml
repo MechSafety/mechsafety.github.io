@@ -16,8 +16,7 @@ content:
         format: json
         fields:
           - { name: eyebrow, label: 상단 분야명, type: string, required: true }
-          - { name: title, label: 대표 문구, type: string, required: true }
-          - { name: description, label: 연구실 소개, type: text, required: true }
+          - { name: title, label: 연구실 소개 문장, type: text, required: true }
           - { name: recruitment_title, label: 학생 모집 영문, type: string }
           - { name: recruitment_text, label: 학생 모집 국문, type: text }
 
