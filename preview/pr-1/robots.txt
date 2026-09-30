@@ -1,1 +1,1 @@
-Sitemap: /preview/pr-1/sitemap.xml
+Sitemap: https://mechsafety.github.io/preview/pr-1/sitemap.xml
