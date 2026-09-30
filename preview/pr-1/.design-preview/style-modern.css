@@ -303,6 +303,8 @@ body {
 .news-date { color: #7a4a41; font-size: 0.73rem; letter-spacing: 0.045em; }
 .news-card h3 { margin: 8px 0 10px; font-size: 1.06rem; line-height: 1.45; }
 .news-card p { color: #666c70; font-size: 0.84rem; line-height: 1.75; }
+.news-card p,
+.news-story .article-body p { word-break: keep-all; overflow-wrap: anywhere; }
 .read-more { padding-top: 16px; color: #2b343a; font-size: 0.76rem; }
 
 .page-hero {
@@ -786,6 +788,7 @@ body {
 .article-image { border: 1px solid #c3c6c5; }
 .story-gallery { gap: 1px; border: 1px solid #c3c6c5; background: #c3c6c5; }
 .story-image { border: 0; }
+.story-image:only-child { grid-column: 1 / -1; display: block; height: auto; aspect-ratio: auto; }
 .detail-facts > div { background: #e9e8e3; }
 .pill { border-radius: 0; border-color: #c7cac8; color: #4d555a; background: #efeee9; }
 
