@@ -6,6 +6,8 @@ images:
   - /images/uploads/2026-10-01-201149.png
   - /images/uploads/file.jpg
   - /images/uploads/c-3po.jpg
+  - /images/uploads/2026-2.jpg
+  - /images/uploads/7.png
 published: true
 ---
 할로~ 독일어로 안녕이란 뜻이에요.  듀오링고 368일차, 교양독일어 A+의 실력 폼 미쳤다ㄷㄷㄷ 이런 오버스펙을 가진 전, 이서영입니다! 이 홈페이지의 관리자에요. 교수님께서 저한테 권한을 주셨는데 이 글 지워지기 전에(+ 관리자 뺏기기 전에) 알차게 써보려고 해요 음하하
