@@ -4,7 +4,6 @@ date: 2026-10-01
 summary: 예?
 images:
   - /images/uploads/2026-10-01-201149.png
-  - /images/uploads/obst.png
   - /images/uploads/file.jpg
   - /images/uploads/c-3po.jpg
 published: true
