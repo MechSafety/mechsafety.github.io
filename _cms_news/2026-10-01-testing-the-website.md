@@ -30,3 +30,9 @@ published: false
 저한테 뉴스 채우라고 하셨는데 이거 너무 길게 적었다간 혼날것 같으니 이만 가볼게용 Duty calls right?
 
 세계최고 연구실의 이서영 peace out
+
+
+
+&nbsp;
+
+나 없이도 세계최고 연구실인 이 곳, Thank you dearly. 여러분의 앞날에 좋은 일들만 가득하길
