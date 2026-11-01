@@ -18,7 +18,8 @@
       }
     </script>
     
-    <link rel="stylesheet" href="/.design-preview/style-modern.css?v=1793453777">
+    <link rel="stylesheet" href="/.design-preview/style-modern.css?v=1793577071">
+    <link rel="stylesheet" href="/assets/css/home-simulations.css?v=20261101-native">
   </head>
   <body>
     <header class="site-header">
@@ -50,29 +51,82 @@
 </header>
 
     <main>
-<section class="hero">
-  <div class="hero-analysis-wall" aria-hidden="true">
-    <figure class="analysis-shot analysis-shot--structure"><img src="/.design-preview/images/hero-panels/lsdyna-dynamic.webp" alt=""></figure>
-    <figure class="analysis-shot analysis-shot--vision"><img src="/.design-preview/images/hero-panels/vision-fire-detection.webp" alt=""></figure>
-    <figure class="analysis-shot analysis-shot--fire"><img src="/.design-preview/images/hero-panels/fds-aircraft.png" alt=""></figure>
-    <figure class="analysis-shot analysis-shot--model"><img src="/.design-preview/images/hero-panels/ansys-modal.webp" alt=""></figure>
-  </div>
-  <div class="hero-inner">
-    <div class="hero-copy">
+<section class="home-hero">
+  <div class="shell home-hero-layout">
+    <div class="home-introduction">
+      <p class="home-lab-name">MSCS Lab</p>
       <p class="eyebrow">Mechanical Safety · Numerical Simulation · AI Applications</p>
       <h1>Our research aims to understand physical phenomena and address engineering problems.</h1>
+      
+      <aside class="home-recruitment">
+        <h2>Motivated students are welcome to join us.</h2>
+        <p lang="ko">함께 연구하고 성장할 열정적인 학생을 기다립니다.</p>
+      </aside>
+      
     </div>
+    
+<div class="simulation-showcase" aria-label="Representative numerical simulations">
+  <div class="simulation-grid">
+    
+    <figure class="simulation-tile">
+      <button class="simulation-open" type="button" data-simulation="0" aria-label="Structural mechanics 영상 확대">
+        <video muted loop playsinline preload="none" poster="/assets/simulations/01_ANSYS_Quadruped_GuidedGait_Stress.jpg" data-src="/assets/simulations/01_ANSYS_Quadruped_GuidedGait_Stress.mp4" aria-label="Structural mechanics">
+          <img src="/assets/simulations/01_ANSYS_Quadruped_GuidedGait_Stress.jpg" alt="Structural mechanics 해석 결과">
+        </video>
+        <span class="simulation-expand" aria-hidden="true">↗</span>
+      </button>
+      <figcaption><span>Structural mechanics</span><small>Ansys Mechanical</small></figcaption>
+    </figure>
+    
+    <figure class="simulation-tile">
+      <button class="simulation-open" type="button" data-simulation="1" aria-label="Thermal-fluid flow 영상 확대">
+        <video muted loop playsinline preload="none" poster="/assets/simulations/02_FLUENT_BatteryModule_CurvedChannelLiquidCooling.jpg" data-src="/assets/simulations/02_FLUENT_BatteryModule_CurvedChannelLiquidCooling.mp4" aria-label="Thermal-fluid flow">
+          <img src="/assets/simulations/02_FLUENT_BatteryModule_CurvedChannelLiquidCooling.jpg" alt="Thermal-fluid flow 해석 결과">
+        </video>
+        <span class="simulation-expand" aria-hidden="true">↗</span>
+      </button>
+      <figcaption><span>Thermal-fluid flow</span><small>Ansys Fluent</small></figcaption>
+    </figure>
+    
+    <figure class="simulation-tile">
+      <button class="simulation-open" type="button" data-simulation="2" aria-label="Blast dynamics 영상 확대">
+        <video muted loop playsinline preload="none" poster="/assets/simulations/03_LSDYNA_DetonationGas_SupportedPlateInteraction.jpg" data-src="/assets/simulations/03_LSDYNA_DetonationGas_SupportedPlateInteraction.mp4" aria-label="Blast dynamics">
+          <img src="/assets/simulations/03_LSDYNA_DetonationGas_SupportedPlateInteraction.jpg" alt="Blast dynamics 해석 결과">
+        </video>
+        <span class="simulation-expand" aria-hidden="true">↗</span>
+      </button>
+      <figcaption><span>Blast dynamics</span><small>LS-DYNA / EnSight</small></figcaption>
+    </figure>
+    
+    <figure class="simulation-tile">
+      <button class="simulation-open" type="button" data-simulation="3" aria-label="Fire dynamics 영상 확대">
+        <video muted loop playsinline preload="none" poster="/assets/simulations/04_FDS_EquipmentRoom_CabinetFire_CeilingSmoke.jpg" data-src="/assets/simulations/04_FDS_EquipmentRoom_CabinetFire_CeilingSmoke.mp4" aria-label="Fire dynamics">
+          <img src="/assets/simulations/04_FDS_EquipmentRoom_CabinetFire_CeilingSmoke.jpg" alt="Fire dynamics 해석 결과">
+        </video>
+        <span class="simulation-expand" aria-hidden="true">↗</span>
+      </button>
+      <figcaption><span>Fire dynamics</span><small>FDS / Smokeview</small></figcaption>
+    </figure>
+    
+  </div>
+  <div class="simulation-toolbar">
+    <span>Numerical simulations</span>
+    <button type="button" id="simulation-motion" aria-pressed="false">영상 재생</button>
+  </div>
+</div>
+<dialog class="simulation-dialog" id="simulation-dialog" aria-labelledby="simulation-dialog-title">
+  <div class="simulation-dialog-header">
+<h2 id="simulation-dialog-title"></h2>
+<button type="button" id="simulation-dialog-close">닫기 ×</button>
+</div>
+  <video id="simulation-dialog-video" controls muted playsinline preload="none"></video>
+  <p id="simulation-dialog-note" lang="ko"></p>
+</dialog>
+<script type="application/json" id="simulation-media-data">[{"title":"Structural mechanics","software":"Ansys Mechanical","poster":"/assets/simulations/01_ANSYS_Quadruped_GuidedGait_Stress.jpg","video":"/assets/simulations/01_ANSYS_Quadruped_GuidedGait_Stress.mp4","note":"관절 각도를 지정한 4족 로봇의 보행과 다리 응력입니다. 변형은 실제 크기이며, 몸통의 옆 이동과 회전을 제한한 예제입니다."},{"title":"Thermal-fluid flow","software":"Ansys Fluent","poster":"/assets/simulations/02_FLUENT_BatteryModule_CurvedChannelLiquidCooling.jpg","video":"/assets/simulations/02_FLUENT_BatteryModule_CurvedChannelLiquidCooling.mp4","note":"배터리 모듈과 냉각수 통로의 온도, 흐름을 계산한 예제입니다. 계산된 흐름선을 순차적으로 표시하며, 전지가 식는 시간 변화를 뜻하지 않습니다."},{"title":"Blast dynamics","software":"LS-DYNA / EnSight","poster":"/assets/simulations/03_LSDYNA_DetonationGas_SupportedPlateInteraction.jpg","video":"/assets/simulations/03_LSDYNA_DetonationGas_SupportedPlateInteraction.mp4","note":"폭발 생성가스의 팽창과 지지된 강판의 초기 반응입니다. 주황색은 계산된 가스 경계이며, 매우 짧은 계산 구간을 느리게 재생합니다."},{"title":"Fire dynamics","software":"FDS / Smokeview","poster":"/assets/simulations/04_FDS_EquipmentRoom_CabinetFire_CeilingSmoke.jpg","video":"/assets/simulations/04_FDS_EquipmentRoom_CabinetFire_CeilingSmoke.mp4","note":"장비실의 화염과 천장 연기를 계산한 독립 예제입니다. FDS(Fire Dynamics Simulator, 화재 동역학 해석 프로그램)의 실제 시간별 결과를 표시했습니다."}]</script>
+<script src="/assets/js/home-simulations.js?v=20261101-native" defer></script>
+
   </div>
 </section>
-
-
-<aside class="recruitment">
-  <div>
-    <h2>Motivated students are welcome to join us.</h2>
-    <p lang="ko">함께 연구하고 성장할 열정적인 학생을 기다립니다.</p>
-  </div>
-</aside>
-
 
 
 <section class="section alt">
