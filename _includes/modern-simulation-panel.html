@@ -1,0 +1,27 @@
+{% assign media = site.data.cms.simulation_media %}
+<div class="simulation-showcase" aria-label="Representative numerical simulations">
+  <div class="simulation-grid">
+    {% for item in media.items %}
+    <figure class="simulation-tile">
+      <button class="simulation-open" type="button" data-simulation="{{ forloop.index0 }}" aria-label="{{ item.title }} 영상 확대">
+        <video muted loop playsinline preload="none" poster="{{ item.poster | relative_url }}" data-src="{{ item.video | relative_url }}" aria-label="{{ item.title }}">
+          <img src="{{ item.poster | relative_url }}" alt="{{ item.title }} 해석 결과">
+        </video>
+        <span class="simulation-expand" aria-hidden="true">↗</span>
+      </button>
+      <figcaption><span>{{ item.title }}</span><small>{{ item.software }}</small></figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+  <div class="simulation-toolbar">
+    <span>Numerical simulations</span>
+    <button type="button" id="simulation-motion" aria-pressed="false">영상 재생</button>
+  </div>
+</div>
+<dialog class="simulation-dialog" id="simulation-dialog" aria-labelledby="simulation-dialog-title">
+  <div class="simulation-dialog-header"><h2 id="simulation-dialog-title"></h2><button type="button" id="simulation-dialog-close">닫기 ×</button></div>
+  <video id="simulation-dialog-video" controls muted playsinline preload="none"></video>
+  <p id="simulation-dialog-note" lang="ko"></p>
+</dialog>
+<script type="application/json" id="simulation-media-data">{{ media.items | jsonify }}</script>
+<script src="{{ '/assets/js/home-simulations.js' | relative_url }}?v=20261101-native" defer></script>

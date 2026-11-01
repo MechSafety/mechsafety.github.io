@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "title": "Structural mechanics",
+      "software": "Ansys Mechanical",
+      "poster": "/assets/simulations/01_ANSYS_Quadruped_GuidedGait_Stress.jpg",
+      "video": "/assets/simulations/01_ANSYS_Quadruped_GuidedGait_Stress.mp4",
+      "note": "관절 각도를 지정한 4족 로봇의 보행과 다리 응력입니다. 변형은 실제 크기이며, 몸통의 옆 이동과 회전을 제한한 예제입니다."
+    },
+    {
+      "title": "Thermal-fluid flow",
+      "software": "Ansys Fluent",
+      "poster": "/assets/simulations/02_FLUENT_BatteryModule_CurvedChannelLiquidCooling.jpg",
+      "video": "/assets/simulations/02_FLUENT_BatteryModule_CurvedChannelLiquidCooling.mp4",
+      "note": "배터리 모듈과 냉각수 통로의 온도, 흐름을 계산한 예제입니다. 계산된 흐름선을 순차적으로 표시하며, 전지가 식는 시간 변화를 뜻하지 않습니다."
+    },
+    {
+      "title": "Blast dynamics",
+      "software": "LS-DYNA / EnSight",
+      "poster": "/assets/simulations/03_LSDYNA_DetonationGas_SupportedPlateInteraction.jpg",
+      "video": "/assets/simulations/03_LSDYNA_DetonationGas_SupportedPlateInteraction.mp4",
+      "note": "폭발 생성가스의 팽창과 지지된 강판의 초기 반응입니다. 주황색은 계산된 가스 경계이며, 매우 짧은 계산 구간을 느리게 재생합니다."
+    },
+    {
+      "title": "Fire dynamics",
+      "software": "FDS / Smokeview",
+      "poster": "/assets/simulations/04_FDS_EquipmentRoom_CabinetFire_CeilingSmoke.jpg",
+      "video": "/assets/simulations/04_FDS_EquipmentRoom_CabinetFire_CeilingSmoke.mp4",
+      "note": "장비실의 화염과 천장 연기를 계산한 독립 예제입니다. FDS(Fire Dynamics Simulator, 화재 동역학 해석 프로그램)의 실제 시간별 결과를 표시했습니다."
+    }
+  ]
+}

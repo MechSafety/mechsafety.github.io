@@ -5,29 +5,22 @@ section: home
 lang: en
 ---
 {% assign home = site.data.cms.home %}
-<section class="hero">
-  <div class="hero-analysis-wall" aria-hidden="true">
-    <figure class="analysis-shot analysis-shot--structure"><img src="{{ '/.design-preview/images/hero-panels/lsdyna-dynamic.webp' | relative_url }}" alt=""></figure>
-    <figure class="analysis-shot analysis-shot--vision"><img src="{{ '/.design-preview/images/hero-panels/vision-fire-detection.webp' | relative_url }}" alt=""></figure>
-    <figure class="analysis-shot analysis-shot--fire"><img src="{{ '/.design-preview/images/hero-panels/fds-aircraft.png' | relative_url }}" alt=""></figure>
-    <figure class="analysis-shot analysis-shot--model"><img src="{{ '/.design-preview/images/hero-panels/ansys-modal.webp' | relative_url }}" alt=""></figure>
-  </div>
-  <div class="hero-inner">
-    <div class="hero-copy">
+<section class="home-hero">
+  <div class="shell home-hero-layout">
+    <div class="home-introduction">
+      <p class="home-lab-name">{{ site.title }}</p>
       <p class="eyebrow">{{ home.eyebrow }}</p>
       <h1>{{ home.title }}</h1>
+      {% if home.recruitment_title or home.recruitment_text %}
+      <aside class="home-recruitment">
+        {% if home.recruitment_title %}<h2>{{ home.recruitment_title }}</h2>{% endif %}
+        {% if home.recruitment_text %}<p lang="ko">{{ home.recruitment_text }}</p>{% endif %}
+      </aside>
+      {% endif %}
     </div>
+    {% include modern-simulation-panel.html %}
   </div>
 </section>
-
-{% if home.recruitment_title or home.recruitment_text %}
-<aside class="recruitment">
-  <div>
-    {% if home.recruitment_title %}<h2>{{ home.recruitment_title }}</h2>{% endif %}
-    {% if home.recruitment_text %}<p lang="ko">{{ home.recruitment_text }}</p>{% endif %}
-  </div>
-</aside>
-{% endif %}
 
 {% assign news_items = site.cms_news | where: 'published', true | sort: 'date' | reverse %}
 <section class="section alt">

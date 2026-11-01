@@ -91,6 +91,8 @@ exclude:
   - _posts
   - team
   - blog
+  - source/simulation-examples
+  - output/analysis-motion
 
 # configure jekyll spaceship
 jekyll-spaceship:

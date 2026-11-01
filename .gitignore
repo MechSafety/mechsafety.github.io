@@ -11,3 +11,7 @@ package.json
 package-lock.json
 yarn.lock
 node_modules
+
+# Local solver projects and working media are not public website assets.
+/source/simulation-examples/
+/output/analysis-motion/

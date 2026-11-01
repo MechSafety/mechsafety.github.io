@@ -18,6 +18,7 @@
     </script>
     {% endif %}
     <link rel="stylesheet" href="{{ '/.design-preview/style-modern.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+    {% if page.section == 'home' %}<link rel="stylesheet" href="{{ '/assets/css/home-simulations.css' | relative_url }}?v=20261101-native">{% endif %}
   </head>
   <body>
     {% include modern-header.html %}
