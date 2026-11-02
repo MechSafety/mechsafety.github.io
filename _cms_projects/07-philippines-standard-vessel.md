@@ -4,7 +4,7 @@ agency: (사)한국선급
 program: 연구용역
 start_date: 2023-11-07
 end_date: 2024-04-30
-role: 공동연구책임자
+role: 공동연구원
 published: true
 ---
 

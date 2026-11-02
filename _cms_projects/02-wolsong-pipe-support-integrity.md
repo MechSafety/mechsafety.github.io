@@ -4,6 +4,6 @@ agency: 한국압력기기공학회
 program: 연구용역
 start_date: 2026-03-16
 end_date: 2027-02-28
-role: 공동연구책임자
+role: 공동연구원
 published: true
 ---

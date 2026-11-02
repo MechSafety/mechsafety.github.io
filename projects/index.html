@@ -8,15 +8,19 @@ section: projects
 <section class="section alt"><div class="shell">
   <div class="project-list">
     {% for item in projects %}
+    {% assign start_year = item.start_date | date: '%Y' %}
+    {% assign end_year = item.end_date | date: '%Y' %}
     {% assign agency_text = item.agency | default: '' | strip %}
     {% assign program_text = item.program | default: '' | strip %}
     <article class="project-item{% if item.image %} has-image{% endif %}">
       <div class="project-copy">
         <div class="project-meta">
-          <span class="project-period">
-            <time datetime="{{ item.start_date | date: '%Y-%m-%d' }}">{{ item.start_date | date: '%Y. %-m.' }}</time>
+          <span class="project-period" aria-label="수행연도">
+            <time datetime="{{ start_year }}">{{ start_year }}</time>
+            {% if start_year != end_year %}
             <span aria-hidden="true">–</span>
-            <time datetime="{{ item.end_date | date: '%Y-%m-%d' }}">{{ item.end_date | date: '%Y. %-m.' }}</time>
+            <time datetime="{{ end_year }}">{{ end_year }}</time>
+            {% endif %}
           </span>
           <span class="project-role">{{ item.role }}</span>
         </div>

@@ -4,7 +4,7 @@ agency: 산업안전보건연구원
 program: 연구용역
 start_date: 2024-04-29
 end_date: 2024-10-31
-role: 공동연구책임자
+role: 공동연구원
 published: true
 ---
 
