@@ -2,7 +2,6 @@
 title: TSNE Tech Summit 2026
 date: 2026-05-14
 category: 세미나
-summary: TSNE Tech Summit 2026에 참석해 공학 시뮬레이션과 인공지능의 산업 활용 사례를 살펴보았습니다.
 images:
   - /images/uploads/tsne-tech-summit-2026.jpg
 published: true

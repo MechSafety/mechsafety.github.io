@@ -19,12 +19,10 @@ assert.match(dinner, /^title: 연구실 회식$/m);
 assert.match(dinner, /^date: 2026-06-24$/m);
 assert.match(dinner, /2026년 6월 24일 회식을 했습니다/);
 assert.match(dinner, /함께 식사하고 스크린 야구를 하며 즐거운 시간을 보냈습니다/);
-const dinnerSummary = dinner.match(/^summary: ([^\r\n]+)$/m)[1];
-const dinnerBody = dinner.split(/^---\s*$/m).slice(2).join('').trim();
-assert.ok(dinnerBody.includes(dinnerSummary), 'The dinner card must use the same sentence as the article body');
 assert.doesNotMatch(dinner, /교류/);
 assert.doesNotMatch(test, /히팅 필름|열전대|5°C|홍동현, 남윤희|연구실 학생들이/);
 for (const record of [dinner, training, test, summit]) {
+  assert.doesNotMatch(record, /^summary:/m);
   assert.doesNotMatch(record, /연구실 구성원들이|연구실 학생들이|홍동현|남윤희|이서영|김성현/);
   const body = record.split(/^---\s*$/m).slice(2).join('').trim();
   assert.match(body, /^2026년 /);

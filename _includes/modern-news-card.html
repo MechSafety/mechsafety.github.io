@@ -1,3 +1,4 @@
+{% assign news_body_text = include.item.content | markdownify | strip_html | normalize_whitespace | strip %}
 <article class="news-card">
   <a href="{{ include.item.url | relative_url }}?v={{ site.time | date: '%s' }}">
     {% if include.item.images and include.item.images.size > 0 %}
@@ -8,7 +9,7 @@
     <div class="news-content">
       <time class="news-date" datetime="{{ include.item.date | date: '%Y-%m-%d' }}">{{ include.item.date | date: '%Y. %-m. %-d.' }}</time>
       <h3>{{ include.item.title }}</h3>
-      <p>{{ include.item.summary }}</p>
+      {% if news_body_text != '' %}<p class="news-preview">{{ news_body_text | escape_once }}</p>{% endif %}
       <span class="read-more">자세히 보기 →</span>
     </div>
   </a>

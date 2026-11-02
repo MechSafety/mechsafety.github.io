@@ -2,7 +2,6 @@
 title: 방재시험연구원 배터리 열폭주 시험
 date: 2026-09-08
 category: 연구실 활동
-summary: 방재시험연구원에서 배터리 열폭주 시험을 진행했습니다.
 images:
   - /images/uploads/file.png
   - /images/uploads/file-1.png

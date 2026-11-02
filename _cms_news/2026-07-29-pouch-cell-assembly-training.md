@@ -2,7 +2,6 @@
 title: 파우치셀 조립 공정 교육
 date: 2026-07-29
 category: 교육
-summary: 파우치셀 조립 공정 교육에 참여해 구조와 조립 과정을 배우고 제작 실습을 진행했습니다.
 images:
   - /images/uploads/pouch-cell-assembly-2026-07-29-02.jpg
   - /images/uploads/pouch-cell-assembly-2026-07-29-01.jpg

@@ -30,7 +30,7 @@ content:
           fields: [title, date, category, published]
           primary: title
           sort: [date, title]
-          search: [title, category, summary]
+          search: [title, category, body]
           default:
             sort: date
             order: desc
@@ -49,15 +49,10 @@ content:
             label: 분류
             type: select
             options: [교육, 학술대회, 세미나, 수상, 워크숍, 연구실 활동]
-          - name: summary
-            label: 목록 설명
-            type: text
-            required: true
-            description: 목록에 표시할 짧은 소개를 적습니다.
           - name: body
             label: 본문
             type: rich-text
-            description: 활동 내용을 적습니다. 사진은 아래 사진 항목에 추가합니다.
+            description: News와 Home에는 이 본문의 앞부분이 그대로 표시됩니다.
             options:
               format: markdown
               switcher: false

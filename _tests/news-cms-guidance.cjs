@@ -6,20 +6,21 @@ const field = name => news.split(`          - name: ${name}\n`)[1]?.split(/\n   
 
 assert.match(news, /type: collection\s+path: _cms_news/);
 assert.match(news, /sort: date\s+order: desc/);
-for (const name of ['title', 'date', 'summary', 'body', 'images', 'published']) {
+for (const name of ['title', 'date', 'body', 'images', 'published']) {
   assert.ok(field(name), `Missing news field: ${name}`);
   assert.match(field(name), /description:/);
 }
-const descriptions = Object.fromEntries(['title', 'date', 'summary', 'body', 'images', 'published'].map(name => [name, field(name).match(/description: ([^\n]+)/)[1]]));
+const descriptions = Object.fromEntries(['title', 'date', 'body', 'images', 'published'].map(name => [name, field(name).match(/description: ([^\n]+)/)[1]]));
 assert.deepEqual(descriptions, {
   title: '행사명 또는 활동명을 입력합니다.',
   date: '실제 활동 날짜를 입력합니다.',
-  summary: '목록에 표시할 짧은 소개를 적습니다.',
-  body: '활동 내용을 적습니다. 사진은 아래 사진 항목에 추가합니다.',
+  body: 'News와 Home에는 이 본문의 앞부분이 그대로 표시됩니다.',
   images: '표시할 순서대로 추가합니다. 첫 사진이 대표 사진이며, 개수 제한은 없습니다.',
   published: '켜고 Save를 누르면 홈페이지에 공개됩니다.'
 });
 assert.doesNotMatch(news, /연구실 구성원들이|통일합니다|1~2문장|한 문장/);
+assert.doesNotMatch(news, /\bsummary\b|목록 설명/);
+assert.match(news, /search: \[title, category, body\]/);
 assert.match(field('body'), /media: false/);
 assert.match(field('images'), /개수 제한은 없습니다/);
 assert.match(field('images'), /첫 사진이 대표 사진/);
@@ -28,4 +29,4 @@ assert.doesNotMatch(field('images'), /\bmax:/);
 assert.match(field('published'), /홈페이지에 공개/);
 assert.match(cms, /content:\s+merge: true/);
 
-console.log(JSON.stringify({pass: true, checks: ['same news collection used by CMS and site', 'date-based sorting retained', 'brief field-purpose guidance only', 'no forced subjects or sentence counts', 'body photos routed to dedicated gallery', 'unlimited ordered photos with first-photo cover', 'live publishing explained', 'existing metadata preserved']}));
+console.log(JSON.stringify({pass: true, checks: ['same news collection used by CMS and site', 'one body field without separate summary', 'date-based sorting retained', 'brief field-purpose guidance only', 'no forced subjects or sentence counts', 'body photos routed to dedicated gallery', 'unlimited ordered photos with first-photo cover', 'live publishing explained', 'existing metadata preserved']}));
