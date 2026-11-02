@@ -808,7 +808,7 @@ body {
 .article-image { border: 1px solid #c3c6c5; }
 .story-gallery {
   display: grid;
-  width: min(640px, 100%);
+  width: min(720px, 100%);
   margin: 30px auto 0;
   grid-template-columns: minmax(0, 1fr);
   gap: 20px;
