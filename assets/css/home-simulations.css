@@ -16,10 +16,7 @@
 .simulation-expand { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 24px; height: 24px; color: #2e3a42; background: #ffffffd9; border: 1px solid #d5dbd7; font-size: 15px; line-height: 1; opacity: 0; transition: opacity .15s; }
 .simulation-open:hover .simulation-expand, .simulation-open:focus-visible .simulation-expand { opacity: 1; }
 .simulation-tile figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 3px 10px; padding: 9px 12px 10px; border-top: 1px solid #e1e5e1; font-size: .76rem; font-weight: 600; line-height: 1.55; color: #2b363d; }
-.simulation-tile small { font-size: .65rem; font-weight: 500; color: #657079; }
-.simulation-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-top: 12px; color: #68727a; font-size: .67rem; line-height: 1.5; }
-.simulation-toolbar button { min-height: 34px; padding: 5px 10px; border: 1px solid #c6ccc7; background: transparent; color: #4e5a62; font-family: inherit; font-size: .68rem; cursor: pointer; }
-.simulation-open:focus-visible, .simulation-toolbar button:focus-visible, .simulation-dialog button:focus-visible { outline: 3px solid #94543e; outline-offset: 3px; }
+.simulation-open:focus-visible, .simulation-dialog button:focus-visible { outline: 3px solid #94543e; outline-offset: 3px; }
 .simulation-dialog { width: min(1160px, 96vw); max-height: 94dvh; padding: 0; border: 1px solid #899691; background: #f7f6f2; color: #243039; overflow: auto; }
 .simulation-dialog::backdrop { background: #101b24d9; }
 .simulation-dialog-header { position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 12px 20px; background: #f7f6f2; border-bottom: 1px solid #d4d9d4; }
@@ -29,5 +26,5 @@
 .simulation-dialog p { margin: 0; padding: 15px 20px 20px; color: #536169; font-size: .83rem; line-height: 1.8; }
 @media (max-width: 1000px) { .home-hero { padding-top: 48px; } .home-hero-layout { gap: 30px; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); } .home-lab-name { font-size: 1.35rem; } .home-introduction h1 { font-size: 1.5rem; } .simulation-tile figcaption { padding: 8px; font-size: .69rem; } }
 @media (max-width: 780px) { .home-hero-layout { grid-template-columns: 1fr; gap: 30px; } .home-introduction { max-width: 620px; } .home-introduction h1 { max-width: 560px; font-size: 1.65rem; } .home-recruitment { margin-top: 23px; } .simulation-tile figcaption { font-size: .76rem; } }
-@media (max-width: 440px) { .home-hero { padding: 34px 0 28px; } .home-lab-name { margin-bottom: 15px; } .home-introduction .eyebrow { font-size: .78rem; margin-bottom: 15px; } .home-introduction h1 { font-size: 1.43rem; } .home-recruitment h2 { font-size: .82rem; } .home-recruitment p { font-size: .76rem; } .simulation-grid { gap: 8px; } .simulation-tile figcaption { padding: 7px; display: grid; font-size: .66rem; } .simulation-tile small { font-size: .57rem; } .simulation-toolbar { font-size: .63rem; } }
+@media (max-width: 440px) { .home-hero { padding: 34px 0 28px; } .home-lab-name { margin-bottom: 15px; } .home-introduction .eyebrow { font-size: .78rem; margin-bottom: 15px; } .home-introduction h1 { font-size: 1.43rem; } .home-recruitment h2 { font-size: .82rem; } .home-recruitment p { font-size: .76rem; } .simulation-grid { gap: 8px; } .simulation-tile figcaption { padding: 7px; display: grid; font-size: .66rem; } }
 @media (prefers-reduced-motion: reduce) { .simulation-expand { transition: none; } }

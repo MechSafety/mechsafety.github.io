@@ -13,10 +13,6 @@
     </figure>
     {% endfor %}
   </div>
-  <div class="simulation-toolbar">
-    <span>Numerical simulations</span>
-    <button type="button" id="simulation-motion" aria-pressed="false">영상 재생</button>
-  </div>
 </div>
 <dialog class="simulation-dialog" id="simulation-dialog" aria-labelledby="simulation-dialog-title">
   <div class="simulation-dialog-header"><h2 id="simulation-dialog-title"></h2><button type="button" id="simulation-dialog-close">닫기 ×</button></div>
@@ -24,4 +20,4 @@
   <p id="simulation-dialog-note" lang="ko"></p>
 </dialog>
 <script type="application/json" id="simulation-media-data">{{ media.items | jsonify }}</script>
-<script src="{{ '/assets/js/home-simulations.js' | relative_url }}?v=20261101-native" defer></script>
+<script src="{{ '/assets/js/home-simulations.js' | relative_url }}?v=20261102-clean" defer></script>

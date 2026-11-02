@@ -4,28 +4,23 @@
   if (!root) return;
   const data = JSON.parse(document.querySelector('#simulation-media-data').textContent);
   const videos = [...root.querySelectorAll('video')];
-  const toggle = document.querySelector('#simulation-motion');
   const dialog = document.querySelector('#simulation-dialog');
   const expanded = document.querySelector('#simulation-dialog-video');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let wanted = !reduced.matches && !navigator.connection?.saveData;
   let visible = true;
   let focusReturn = null;
   const source = video => {
     if (!video.getAttribute('src') && video.dataset.src) video.src = video.dataset.src;
   };
   const update = () => {
-    const playing = wanted && visible && !document.hidden && !dialog.open;
+    const playing = !reduced.matches && !navigator.connection?.saveData && visible && !document.hidden && !dialog.open;
     videos.forEach(video => {
       if (playing) { source(video); video.play().catch(() => {}); }
       else video.pause();
     });
-    toggle.textContent = wanted ? '영상 일시정지' : '영상 재생';
-    toggle.setAttribute('aria-pressed', String(wanted));
   };
-  toggle.addEventListener('click', () => { wanted = !wanted; update(); });
   document.addEventListener('visibilitychange', update);
-  reduced.addEventListener('change', event => { if (event.matches) wanted = false; update(); });
+  reduced.addEventListener('change', update);
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => { visible = entries[0].isIntersecting; update(); },
       {rootMargin: '80px'}).observe(root);
