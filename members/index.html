@@ -14,7 +14,7 @@ section: members
       {% if group_members.size > 0 %}
       <section class="member-group">
         <h2 lang="en">{{ group_labels[forloop.index0] }}</h2>
-        <div class="member-list">
+        <div class="member-list{% if group_name == 'Principal Investigator' %} member-list--principal{% endif %}">
           {% for member in group_members %}{% include modern-member-card.html member=member %}{% endfor %}
         </div>
       </section>
