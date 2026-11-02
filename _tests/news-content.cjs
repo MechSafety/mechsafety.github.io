@@ -16,7 +16,15 @@ const expectedPhotos = [2, 1, 3, 4, 5].map(index => `/images/uploads/pouch-cell-
 assert.deepEqual(photos, expectedPhotos);
 assert.match(dinner, /^title: 연구실 회식$/m);
 assert.match(dinner, /^date: 2026-06-24$/m);
-assert.match(dinner, /2026년 6월 24일 연구실 회식/);
+assert.match(dinner, /연구실 구성원들이 2026년 6월 24일 회식을 했습니다/);
+assert.doesNotMatch(dinner, /교류|스크린 야구/);
+assert.doesNotMatch(test, /히팅 필름|열전대|5°C|홍동현, 남윤희|연구실 학생들이/);
+for (const record of [dinner, training, test]) {
+  assert.match(record, /^summary: 연구실 구성원들이/m);
+  const body = record.split(/^---\s*$/m).slice(2).join('').trim();
+  assert.match(body, /^연구실 구성원들이/);
+  assert.ok(body.length < 180);
+}
 const dinnerPhotos = dinner.match(/^images:\r?\n((?:  - [^\r\n]+\r?\n)+)/m)[1]
   .trim().split(/\r?\n/).map(line => line.trim().slice(2));
 assert.deepEqual(dinnerPhotos, [1, 2, 3].map(index => `/images/uploads/lab-dinner-2026-06-24-0${index}.jpg`));

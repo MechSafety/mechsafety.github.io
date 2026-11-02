@@ -35,25 +35,44 @@ content:
             sort: date
             order: desc
         fields:
-          - { name: title, label: 제목, type: string, required: true }
-          - { name: date, label: 날짜, type: date, required: true }
+          - name: title
+            label: 제목
+            type: string
+            required: true
+            description: 행사명이나 활동명을 적습니다. 날짜는 아래 날짜 항목에 입력합니다.
+          - name: date
+            label: 날짜
+            type: date
+            required: true
+            description: 실제 활동 날짜를 입력합니다. News는 최신 날짜순으로, Home에는 최신 소식 3개가 표시됩니다.
           - name: category
             label: 분류
             type: select
             options: [교육, 학술대회, 세미나, 수상, 워크숍, 연구실 활동]
-          - { name: summary, label: 목록 설명, type: text, required: true }
+          - name: summary
+            label: 목록 설명
+            type: text
+            required: true
+            description: 활동 내용을 한 문장으로 적습니다. 참석자를 단순히 소개할 때는 ‘연구실 구성원들이’로 통일합니다.
           - name: body
             label: 본문
             type: rich-text
+            description: 날짜, 장소와 활동의 핵심을 1~2문장으로 적습니다. 사진은 본문에 끼워 넣지 않고 아래 사진 항목에 추가합니다.
             options:
               format: markdown
               switcher: false
+              media: false
           - name: images
             label: 사진
             type: image
+            description: 개수 제한 없이 표시할 순서대로 추가합니다. 첫 사진이 News와 Home의 대표 사진입니다. 홈페이지에서는 원본 비율을 유지하고 긴 변을 기준으로 크기가 자동 조정됩니다.
             options:
               multiple: true
-          - { name: published, label: 홈페이지 공개, type: boolean, required: true }
+          - name: published
+            label: 홈페이지 공개
+            type: boolean
+            required: true
+            description: 켜고 Save를 누르면 정식 홈페이지 배포가 시작됩니다. 몇 분 뒤 홈페이지에서 실제 글과 사진을 확인합니다.
 
       - name: members
         label: Members

@@ -809,6 +809,7 @@ body {
 .story-gallery {
   display: grid;
   width: min(720px, 100%);
+  container-type: inline-size;
   margin: 30px auto 0;
   grid-template-columns: minmax(0, 1fr);
   gap: 20px;
@@ -818,9 +819,13 @@ body {
 }
 .story-image {
   display: block;
-  width: 100%;
+  width: auto;
   min-width: 0;
+  max-width: 100%;
   height: auto;
+  max-height: min(720px, calc(100vw - 48px));
+  max-height: 100cqw;
+  justify-self: center;
   aspect-ratio: auto;
   object-fit: contain;
   margin: 0;
