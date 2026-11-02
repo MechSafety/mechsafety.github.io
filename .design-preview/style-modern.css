@@ -312,6 +312,12 @@ body {
 .news-date { color: #7a4a41; font-size: 0.73rem; letter-spacing: 0.045em; }
 .news-card h3 { margin: 8px 0 10px; font-size: 1.06rem; line-height: 1.45; }
 .news-card p { color: #666c70; font-size: 0.84rem; line-height: 1.75; }
+.news-card .news-preview {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
 .news-card p,
 .news-story .article-body p { word-break: keep-all; overflow-wrap: anywhere; }
 .read-more { padding-top: 16px; color: #2b343a; font-size: 0.76rem; }
