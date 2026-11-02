@@ -21,14 +21,23 @@ assert.match(layout, /'\/news\/' \| relative_url \}\}\?v=\{\{ site\.time/);
 
 const gallery = css.match(/\.story-gallery\s*\{([^}]+)\}/)[1];
 const image = css.match(/\.story-image\s*\{([^}]+)\}/)[1];
-assert.match(gallery, /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
-assert.match(gallery, /gap: 16px/);
+assert.match(gallery, /width: min\(640px, 100%\)/);
+assert.match(gallery, /margin: 30px auto 0/);
+assert.match(gallery, /grid-template-columns: minmax\(0, 1fr\)/);
+assert.match(gallery, /gap: 20px/);
+assert.match(gallery, /padding: 0/);
 assert.match(gallery, /border: 0/);
+assert.match(gallery, /background: transparent/);
 assert.match(image, /width: 100%/);
-assert.match(image, /aspect-ratio: 4 \/ 3/);
+assert.match(image, /height: auto/);
+assert.match(image, /aspect-ratio: auto/);
 assert.match(image, /object-fit: contain/);
+assert.match(image, /margin: 0/);
+assert.match(image, /padding: 0/);
+assert.match(image, /border: 0/);
+assert.match(image, /background: transparent/);
 assert.doesNotMatch(css, /story-image:only-child|story-gallery[^\{]*:has\(/);
 const mobile = css.slice(css.lastIndexOf('@media (max-width: 720px)'));
 assert.match(mobile, /\.story-gallery\s*\{[^}]*grid-template-columns: minmax\(0, 1fr\)/);
 
-console.log(JSON.stringify({pass: true, checks: ['unlimited CMS photos', 'all photos rendered', 'same 4:3 slots for one or many photos', 'two columns on desktop and one on mobile', 'no image cropping', 'lazy loading', 'first photo stays the list cover']}));
+console.log(JSON.stringify({pass: true, checks: ['unlimited CMS photos', 'all photos rendered', 'same 640px maximum width regardless of count', 'one photo per row on desktop and mobile', 'natural image aspect ratio', 'no gray bars or frames', 'no image cropping', 'lazy loading', 'first photo stays the list cover']}));
