@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 const training = fs.readFileSync('_cms_news/2026-07-29-pouch-cell-assembly-training.md', 'utf8');
 const test = fs.readFileSync('_cms_news/2026-09-08-battery-thermal-runaway-test.md', 'utf8');
 const dinner = fs.readFileSync('_cms_news/2026-06-24-lab-dinner.md', 'utf8');
+const summit = fs.readFileSync('_cms_news/2026-05-14-tsne-tech-summit-2026.md', 'utf8');
 
 assert.match(training, /^title: 파우치셀 조립 공정 교육$/m);
 assert.match(training, /^date: 2026-07-29$/m);
@@ -16,15 +17,19 @@ const expectedPhotos = [2, 1, 3, 4, 5].map(index => `/images/uploads/pouch-cell-
 assert.deepEqual(photos, expectedPhotos);
 assert.match(dinner, /^title: 연구실 회식$/m);
 assert.match(dinner, /^date: 2026-06-24$/m);
-assert.match(dinner, /연구실 구성원들이 2026년 6월 24일 회식을 했습니다/);
-assert.doesNotMatch(dinner, /교류|스크린 야구/);
+assert.match(dinner, /2026년 6월 24일 회식을 했습니다/);
+assert.match(dinner, /함께 식사하고 스크린 야구를 하며 즐거운 시간을 보냈습니다/);
+assert.doesNotMatch(dinner, /교류/);
 assert.doesNotMatch(test, /히팅 필름|열전대|5°C|홍동현, 남윤희|연구실 학생들이/);
-for (const record of [dinner, training, test]) {
-  assert.match(record, /^summary: 연구실 구성원들이/m);
+for (const record of [dinner, training, test, summit]) {
+  assert.doesNotMatch(record, /연구실 구성원들이|연구실 학생들이|홍동현|남윤희|이서영|김성현/);
   const body = record.split(/^---\s*$/m).slice(2).join('').trim();
-  assert.match(body, /^연구실 구성원들이/);
-  assert.ok(body.length < 180);
+  assert.match(body, /^2026년 /);
 }
+assert.match(summit, /^title: TSNE Tech Summit 2026$/m);
+assert.match(summit, /^date: 2026-05-14$/m);
+assert.match(summit, /^category: 세미나$/m);
+assert.match(summit, /공학 시뮬레이션과 인공지능 기술의 산업 활용 사례/);
 const dinnerPhotos = dinner.match(/^images:\r?\n((?:  - [^\r\n]+\r?\n)+)/m)[1]
   .trim().split(/\r?\n/).map(line => line.trim().slice(2));
 assert.deepEqual(dinnerPhotos, [1, 2, 3].map(index => `/images/uploads/lab-dinner-2026-06-24-0${index}.jpg`));
