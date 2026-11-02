@@ -709,12 +709,13 @@ body {
 .project-list {
   display: block;
   border: 0;
+  border-top: 1px solid #d2d4d1;
 }
 
 .project-item {
   display: grid;
   align-items: start;
-  padding: 16px 6px 17px;
+  padding: 16px 6px;
   margin: 0;
   border: 0;
   border-bottom: 1px solid #d2d4d1;
