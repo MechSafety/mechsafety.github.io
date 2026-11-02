@@ -3,6 +3,8 @@ title: 열유체역학
 title_en: Thermofluid Mechanics
 audience: ""
 offerings:
+  - year: 2023
+    semester: 1학기
   - year: 2024
     semester: 2학기
   - year: 2025
