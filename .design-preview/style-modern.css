@@ -808,8 +808,11 @@ body {
 .article-image { border: 1px solid #c3c6c5; }
 .story-gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  width: min(640px, 100%);
+  margin: 30px auto 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  padding: 0;
   border: 0;
   background: transparent;
 }
@@ -818,10 +821,12 @@ body {
   width: 100%;
   min-width: 0;
   height: auto;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: auto;
   object-fit: contain;
+  margin: 0;
+  padding: 0;
   border: 0;
-  background: #eeede8;
+  background: transparent;
 }
 .detail-facts > div { background: #e9e8e3; }
 .pill { border-radius: 0; border-color: #c7cac8; color: #4d555a; background: #efeee9; }
