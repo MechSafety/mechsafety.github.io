@@ -4,8 +4,8 @@ date: 2026-07-29
 category: 교육
 summary: 연구실 학생들이 파우치셀의 구성과 조립 공정을 배우고 제작 과정을 실습했습니다.
 images:
-  - /images/uploads/pouch-cell-assembly-2026-07-29-01.jpg
   - /images/uploads/pouch-cell-assembly-2026-07-29-02.jpg
+  - /images/uploads/pouch-cell-assembly-2026-07-29-01.jpg
   - /images/uploads/pouch-cell-assembly-2026-07-29-03.jpg
   - /images/uploads/pouch-cell-assembly-2026-07-29-04.jpg
   - /images/uploads/pouch-cell-assembly-2026-07-29-05.jpg
