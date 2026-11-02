@@ -11,9 +11,12 @@ section: projects
     {% assign start_year = item.start_date | date: '%Y' %}
     {% assign end_year = item.end_date | date: '%Y' %}
     {% assign agency_text = item.agency | default: '' | strip %}
-    <article class="project-item{% if item.image %} has-image{% endif %}">
+    {% assign project_image = item.image | default: '' | strip %}
+    <article class="project-item{% if project_image.size > 0 %} has-image{% endif %}">
       <div class="project-copy">
+        <h2>{{ item.title }}</h2>
         <div class="project-meta">
+          {% if agency_text.size > 0 %}<p class="project-agency">{{ item.agency }}</p>{% endif %}
           <span class="project-period" aria-label="수행연도">
             <time datetime="{{ start_year }}">{{ start_year }}</time>
             {% if start_year != end_year %}
@@ -23,11 +26,9 @@ section: projects
           </span>
           <span class="project-role">{{ item.role }}</span>
         </div>
-        <h2>{{ item.title }}</h2>
-        {% if agency_text.size > 0 %}<p class="project-agency">{{ item.agency }}</p>{% endif %}
       </div>
-      {% if item.image %}
-      <figure class="project-visual"><img src="{{ item.image | relative_url }}" alt="{{ item.title }} 대표 이미지"></figure>
+      {% if project_image.size > 0 %}
+      <figure class="project-visual"><img src="{{ project_image | relative_url }}" alt="{{ item.title }} 대표 이미지" loading="lazy"></figure>
       {% endif %}
     </article>
     {% endfor %}
