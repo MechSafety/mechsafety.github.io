@@ -1,5 +1,5 @@
 <article class="news-card">
-  <a href="{{ include.item.url | relative_url }}">
+  <a href="{{ include.item.url | relative_url }}?v={{ site.time | date: '%s' }}">
     {% if include.item.images and include.item.images.size > 0 %}
       <div class="news-image has-image"><img src="{{ include.item.images[0] | relative_url }}" alt=""><span>{{ include.item.category }}</span></div>
     {% else %}
