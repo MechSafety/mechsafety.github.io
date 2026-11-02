@@ -174,17 +174,16 @@ content:
         format: yaml-frontmatter
         filename: "{title}.md"
         view:
-          fields: [title, audience, order, published]
+          fields: [title, order, published]
           primary: title
           sort: [order, title]
-          search: [title, title_en, audience]
+          search: [title, title_en]
           default:
             sort: order
             order: asc
         fields:
           - { name: title, label: 과목명, type: string, required: true }
           - { name: title_en, label: 과목명 영문, type: string, required: true }
-          - { name: audience, label: 수강대상, type: string }
           - name: offerings
             label: 개설 이력
             type: object

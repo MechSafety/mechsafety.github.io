@@ -8,6 +8,8 @@ section: projects
 <section class="section alt"><div class="shell">
   <div class="project-list">
     {% for item in projects %}
+    {% assign agency_text = item.agency | default: '' | strip %}
+    {% assign program_text = item.program | default: '' | strip %}
     <article class="project-item{% if item.image %} has-image{% endif %}">
       <div class="project-copy">
         <div class="project-meta">
@@ -19,10 +21,10 @@ section: projects
           <span class="project-role">{{ item.role }}</span>
         </div>
         <h2>{{ item.title }}</h2>
-        {% if item.agency != blank or item.program != blank %}
+        {% if agency_text.size > 0 or program_text.size > 0 %}
         <div class="project-funding">
-          {% if item.agency != blank %}<p class="project-agency">{{ item.agency }}</p>{% endif %}
-          {% if item.program != blank %}<p class="project-program">{{ item.program }}</p>{% endif %}
+          {% if agency_text.size > 0 %}<p class="project-agency">{{ item.agency }}</p>{% endif %}
+          {% if program_text.size > 0 %}<p class="project-program">{{ item.program }}</p>{% endif %}
         </div>
         {% endif %}
       </div>
