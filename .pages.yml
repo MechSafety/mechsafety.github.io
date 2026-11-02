@@ -163,7 +163,7 @@ content:
           - name: role
             label: 역할
             type: select
-            options: [연구책임자, 공동연구원]
+            options: [연구책임자, 공동연구책임자, 공동연구원]
           - { name: image, label: 대표 이미지, type: image }
           - { name: published, label: 홈페이지 공개, type: boolean, required: true }
 

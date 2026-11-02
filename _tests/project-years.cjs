@@ -9,23 +9,25 @@ assert.match(template, /<time datetime="\{\{ start_year \}\}">\{\{ start_year \}
 assert.doesNotMatch(template, /%m|%-m|%d|%-d/);
 assert.match(template, /sort: 'start_date'/);
 const projectsConfig = cms.split('      - name: projects')[1].split('      - name: courses')[0];
-assert.match(projectsConfig, /options: \[연구책임자, 공동연구원\]/);
+assert.match(projectsConfig, /options: \[연구책임자, 공동연구책임자, 공동연구원\]/);
 assert.match(projectsConfig, /name: start_date, label: 시작일, type: date/);
 assert.match(projectsConfig, /name: end_date, label: 종료일, type: date/);
 let projects = 0;
 let jointResearchers = 0;
+let jointLeaders = 0;
 for (const file of fs.readdirSync('_cms_projects').filter(file => file.endsWith('.md'))) {
   const content = fs.readFileSync('_cms_projects/' + file, 'utf8');
   const start = content.match(/^start_date: (\d{4}-\d{2}-\d{2})$/m)?.[1];
   const end = content.match(/^end_date: (\d{4}-\d{2}-\d{2})$/m)?.[1];
   const role = content.match(/^role: (.+)$/m)?.[1].trim();
   assert.ok(start && end, 'Full source dates must remain: ' + file);
-  assert.ok(['연구책임자', '공동연구원'].includes(role), 'Unexpected role in ' + file);
+  assert.ok(['연구책임자', '공동연구책임자', '공동연구원'].includes(role), 'Unexpected role in ' + file);
   const startYear = start.slice(0, 4), endYear = end.slice(0, 4);
   const display = startYear === endYear ? startYear : startYear + '–' + endYear;
   assert.match(display, /^\d{4}(?:–\d{4})?$/);
   jointResearchers += Number(role === '공동연구원');
+  jointLeaders += Number(role === '공동연구책임자');
   projects++;
 }
 assert.ok(projects > 0);
-console.log(JSON.stringify({pass: true, projects, jointResearchers, checks: ['year-only display', 'same-year collapse', 'full source dates retained', 'date sorting retained', 'CMS roles match content']}));
+console.log(JSON.stringify({pass: true, projects, jointResearchers, jointLeaders, checks: ['year-only display', 'same-year collapse', 'full source dates retained', 'date sorting retained', 'CMS roles match content']}));
