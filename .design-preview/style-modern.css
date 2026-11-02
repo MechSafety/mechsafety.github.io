@@ -763,20 +763,11 @@ body {
 }
 .project-copy h2:last-child { margin-bottom: 0; }
 
-.project-funding { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 32px; }
-
 .project-copy .project-agency {
   margin: 0;
   color: #3f484e;
   font-size: 0.84rem;
   font-weight: 550;
-  line-height: 1.5;
-}
-
-.project-copy .project-program {
-  margin: 0;
-  color: #6a7175;
-  font-size: 0.78rem;
   line-height: 1.5;
 }
 
