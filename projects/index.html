@@ -11,7 +11,6 @@ section: projects
     {% assign start_year = item.start_date | date: '%Y' %}
     {% assign end_year = item.end_date | date: '%Y' %}
     {% assign agency_text = item.agency | default: '' | strip %}
-    {% assign program_text = item.program | default: '' | strip %}
     <article class="project-item{% if item.image %} has-image{% endif %}">
       <div class="project-copy">
         <div class="project-meta">
@@ -25,12 +24,7 @@ section: projects
           <span class="project-role">{{ item.role }}</span>
         </div>
         <h2>{{ item.title }}</h2>
-        {% if agency_text.size > 0 or program_text.size > 0 %}
-        <div class="project-funding">
-          {% if agency_text.size > 0 %}<p class="project-agency">{{ item.agency }}</p>{% endif %}
-          {% if program_text.size > 0 %}<p class="project-program">{{ item.program }}</p>{% endif %}
-        </div>
-        {% endif %}
+        {% if agency_text.size > 0 %}<p class="project-agency">{{ item.agency }}</p>{% endif %}
       </div>
       {% if item.image %}
       <figure class="project-visual"><img src="{{ item.image | relative_url }}" alt="{{ item.title }} 대표 이미지"></figure>
