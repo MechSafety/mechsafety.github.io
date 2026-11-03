@@ -43,7 +43,7 @@ assert.match(training, /redirect_from:\r?\n  - \/news\/2026-07-24-training-progr
 assert.match(test, /^title: 방재시험연구원 배터리 열폭주 시험$/m);
 assert.match(test, /^date: 2026-09-08$/m);
 assert.match(test, /방재시험연구원에서 리튬이온 배터리 셀의 열폭주 시험을 진행했습니다/);
-assert.match(test, /셀의 어느 부위에서 가스가 분출되는지 살펴보았습니다/);
+assert.match(test, /열폭주의 개시와 진행 양상, 가스 분출 위치를 관찰했습니다/);
 assert.doesNotMatch(test, /위더스세웅/);
 assert.match(test, /redirect_from:\r?\n  - \/news\/2026-10-01\//);
 assert.match(test, /\/images\/uploads\/file\.png\r?\n  - \/images\/uploads\/file-1\.png/);
