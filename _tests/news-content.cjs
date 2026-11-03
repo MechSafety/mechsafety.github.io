@@ -9,7 +9,7 @@ const summit = fs.readFileSync('_cms_news/2026-05-14-tsne-tech-summit-2026.md', 
 
 assert.match(training, /^title: 파우치셀 조립 공정 교육$/m);
 assert.match(training, /^date: 2026-07-29$/m);
-assert.match(training, /2026년 7월 29일 파우치셀 조립 공정 교육/);
+assert.match(training, /파우치셀 조립 공정 교육에 참여했습니다/);
 assert.doesNotMatch(training, /2026-07-24(?!-training-program)|학생 전문교육 프로그램 참여|새로운 해석 기법/);
 const photos = training.match(/^images:\r?\n((?:  - [^\r\n]+\r?\n)+)/m)[1]
   .trim().split(/\r?\n/).map(line => line.trim().slice(2));
@@ -17,7 +17,6 @@ const expectedPhotos = [2, 1, 3, 4, 5].map(index => `/images/uploads/pouch-cell-
 assert.deepEqual(photos, expectedPhotos);
 assert.match(dinner, /^title: 연구실 회식$/m);
 assert.match(dinner, /^date: 2026-06-24$/m);
-assert.match(dinner, /2026년 6월 24일 회식을 했습니다/);
 assert.match(dinner, /함께 식사하고 스크린 야구를 하며 즐거운 시간을 보냈습니다/);
 assert.doesNotMatch(dinner, /교류/);
 assert.doesNotMatch(test, /히팅 필름|열전대|5°C|홍동현, 남윤희|연구실 학생들이/);
@@ -25,7 +24,7 @@ for (const record of [dinner, training, test, summit]) {
   assert.doesNotMatch(record, /^summary:/m);
   assert.doesNotMatch(record, /연구실 구성원들이|연구실 학생들이|홍동현|남윤희|이서영|김성현/);
   const body = record.split(/^---\s*$/m).slice(2).join('').trim();
-  assert.match(body, /^2026년 /);
+  assert.doesNotMatch(body, /\d{4}년\s*\d{1,2}월\s*\d{1,2}일/);
 }
 assert.match(summit, /^title: TSNE Tech Summit 2026$/m);
 assert.match(summit, /^date: 2026-05-14$/m);
@@ -43,7 +42,9 @@ for (const photo of [...photos, ...dinnerPhotos]) {
 assert.match(training, /redirect_from:\r?\n  - \/news\/2026-07-24-training-program\//);
 assert.match(test, /^title: 방재시험연구원 배터리 열폭주 시험$/m);
 assert.match(test, /^date: 2026-09-08$/m);
-assert.match(test, /2026년 9월 8일 방재시험연구원에서/);
+assert.match(test, /방재시험연구원에서 리튬이온 배터리 셀의 열폭주 시험을 진행했습니다/);
+assert.match(test, /셀의 어느 부위에서 가스가 분출되는지 살펴보았습니다/);
+assert.doesNotMatch(test, /위더스세웅/);
 assert.match(test, /redirect_from:\r?\n  - \/news\/2026-10-01\//);
 assert.match(test, /\/images\/uploads\/file\.png\r?\n  - \/images\/uploads\/file-1\.png/);
 assert.match(training, /^published: true$/m);
