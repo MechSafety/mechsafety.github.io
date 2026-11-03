@@ -14,7 +14,7 @@ const descriptions = Object.fromEntries(['title', 'date', 'body', 'images', 'pub
 assert.deepEqual(descriptions, {
   title: '행사명 또는 활동명을 입력합니다.',
   date: '실제 활동 날짜를 입력합니다.',
-  body: 'News와 Home에는 이 본문의 앞부분이 그대로 표시됩니다.',
+  body: '같은 내용은 한 문단으로 이어 씁니다. News와 Home에는 본문 앞부분이 표시됩니다.',
   images: '표시할 순서대로 추가합니다. 첫 사진이 대표 사진이며, 개수 제한은 없습니다.',
   published: '켜고 Save를 누르면 홈페이지에 공개됩니다.'
 });

@@ -8,4 +8,4 @@ images:
   - /images/uploads/lab-dinner-2026-06-24-03.jpg
 published: true
 ---
-함께 식사하고 스크린 야구를 하며 즐거운 시간을 보냈습니다.
+연구실 회식을 했습니다. 함께 식사한 뒤에는 스크린 야구도 즐겼습니다.

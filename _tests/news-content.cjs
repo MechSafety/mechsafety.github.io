@@ -17,13 +17,14 @@ const expectedPhotos = [2, 1, 3, 4, 5].map(index => `/images/uploads/pouch-cell-
 assert.deepEqual(photos, expectedPhotos);
 assert.match(dinner, /^title: 연구실 회식$/m);
 assert.match(dinner, /^date: 2026-06-24$/m);
-assert.match(dinner, /함께 식사하고 스크린 야구를 하며 즐거운 시간을 보냈습니다/);
+assert.match(dinner, /연구실 회식을 했습니다\. 함께 식사한 뒤에는 스크린 야구도 즐겼습니다\./);
 assert.doesNotMatch(dinner, /교류/);
 assert.doesNotMatch(test, /히팅 필름|열전대|5°C|홍동현, 남윤희|연구실 학생들이/);
 for (const record of [dinner, training, test, summit]) {
   assert.doesNotMatch(record, /^summary:/m);
   assert.doesNotMatch(record, /연구실 구성원들이|연구실 학생들이|홍동현|남윤희|이서영|김성현/);
   const body = record.split(/^---\s*$/m).slice(2).join('').trim();
+  assert.doesNotMatch(body, /\r?\n[ \t]*\r?\n/);
   assert.doesNotMatch(body, /\d{4}년\s*\d{1,2}월\s*\d{1,2}일/);
 }
 assert.match(summit, /^title: TSNE Tech Summit 2026$/m);
