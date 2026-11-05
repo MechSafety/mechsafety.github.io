@@ -1,6 +1,6 @@
 .home-hero { padding: 70px 0 48px; background: #f0efea; border-bottom: 1px solid #d4d5cf; }
-.home-hero-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.2fr); align-items: center; gap: clamp(30px, 4.8vw, 70px); }
-.home-introduction { max-width: 480px; }
+.home-hero-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); align-items: center; gap: clamp(32px, 4vw, 64px); }
+.home-introduction { max-width: 560px; }
 .home-lab-name { margin: 0 0 22px; font-size: 1.5rem; font-weight: 700; letter-spacing: -.025em; color: #1d262c; }
 .home-introduction .eyebrow { display: block; margin: 0 0 20px; color: #4b555b; font-size: .91rem; font-weight: 550; letter-spacing: 0; line-height: 1.9; text-transform: none; }
 .home-introduction .eyebrow::before { display: none; }
@@ -8,7 +8,7 @@
 .home-recruitment { margin-top: 30px; padding-top: 21px; border-top: 1px solid #c3c6c2; }
 .home-recruitment h2 { margin: 0 0 7px; font-family: var(--font-body); font-size: .91rem; font-weight: 550; line-height: 1.65; letter-spacing: -.01em; color: #3f4a51; }
 .home-recruitment p { margin: 0; color: #59636a; font-size: .82rem; line-height: 1.7; }
-.simulation-showcase { min-width: 0; }
+.simulation-showcase { min-width: 0; width: 100%; max-width: 840px; justify-self: end; }
 .simulation-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .simulation-tile { margin: 0; min-width: 0; border: 1px solid #c8cecb; background: #fff; }
 .simulation-open { position: relative; display: block; width: 100%; padding: 0; overflow: hidden; cursor: pointer; border: 0; background: #fff; }
@@ -25,6 +25,6 @@
 .simulation-dialog video { display: block; width: 100%; max-height: 72dvh; background: #fff; }
 .simulation-dialog p { margin: 0; padding: 15px 20px 20px; color: #536169; font-size: .83rem; line-height: 1.8; }
 @media (max-width: 1000px) { .home-hero { padding-top: 48px; } .home-hero-layout { gap: 30px; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); } .home-lab-name { font-size: 1.35rem; } .home-introduction h1 { font-size: 1.5rem; } .simulation-tile figcaption { padding: 8px; font-size: .69rem; } }
-@media (max-width: 780px) { .home-hero-layout { grid-template-columns: 1fr; gap: 30px; } .home-introduction { max-width: 620px; } .home-introduction h1 { max-width: 560px; font-size: 1.65rem; } .home-recruitment { margin-top: 23px; } .simulation-tile figcaption { font-size: .76rem; } }
+@media (max-width: 780px) { .home-hero-layout { grid-template-columns: 1fr; gap: 30px; } .home-introduction { max-width: 620px; } .home-introduction h1 { max-width: 560px; font-size: 1.65rem; } .home-recruitment { margin-top: 23px; } .simulation-showcase { justify-self: start; } .simulation-tile figcaption { font-size: .76rem; } }
 @media (max-width: 440px) { .home-hero { padding: 34px 0 28px; } .home-lab-name { margin-bottom: 15px; } .home-introduction .eyebrow { font-size: .78rem; margin-bottom: 15px; } .home-introduction h1 { font-size: 1.43rem; } .home-recruitment h2 { font-size: .82rem; } .home-recruitment p { font-size: .76rem; } .simulation-grid { gap: 8px; } .simulation-tile figcaption { padding: 7px; display: grid; font-size: .66rem; } }
 @media (prefers-reduced-motion: reduce) { .simulation-expand { transition: none; } }
