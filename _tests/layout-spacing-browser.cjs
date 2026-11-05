@@ -5,6 +5,9 @@ const assert = require('node:assert/strict');
 const { chromium } = require(process.env.LAYOUT_PLAYWRIGHT_PATH || 'playwright');
 
 const root = path.resolve(__dirname, '..');
+const layoutCss = fs.readFileSync(path.join(root, '.design-preview/style-modern.css'), 'utf8');
+const layoutMax = Number(layoutCss.match(/--layout-max:\s*(\d+)px/)[1]);
+const layoutGutter = Number(layoutCss.match(/--layout-gutter:\s*(\d+)px/)[1]);
 const base = process.env.LAYOUT_BASE_URL || 'https://mechsafety.github.io';
 const live = process.env.LAYOUT_USE_LIVE === '1';
 const version = process.env.LAYOUT_VERSION || String(Date.now());
@@ -56,7 +59,7 @@ async function run() {
       await page.setViewportSize({ width, height: 1080 });
       for (const pagePath of pages) {
         await page.goto(`${base}${pagePath}?v=${version}`, { waitUntil: 'domcontentloaded' });
-        await page.waitForFunction(() => getComputedStyle(document.documentElement).getPropertyValue('--layout-max').trim() === '1520px');
+        await page.waitForFunction(expected => getComputedStyle(document.documentElement).getPropertyValue('--layout-max').trim() === `${expected}px`, layoutMax);
         await page.evaluate(() => document.fonts.ready);
         const measured = await page.evaluate(() => {
           const rect = el => {
@@ -84,11 +87,25 @@ async function run() {
             projectTitles: [...document.querySelectorAll('.project-copy h2')].map(el => rect(el).width),
             media: [...document.querySelectorAll('.course-media')].map(el => rect(el).width),
             courseGrid: document.querySelector('.course-grid') ? rect(document.querySelector('.course-grid')).width : null,
+            courseLabels: [...document.querySelectorAll('.course-meta dt')].map(el => {
+              const range = document.createRange();
+              range.selectNodeContents(el);
+              return { whitespace: getComputedStyle(el).whiteSpace, lines: new Set([...range.getClientRects()].map(r => r.y)).size };
+            }),
             contacts: [...document.querySelectorAll('.contact-details dd')].map(el => ({ text: rect(el), card: rect(el.closest('.contact-card')) })),
             newsTitles: [...document.querySelectorAll('.news-card h3')].map(el => el.textContent.trim()),
+            kimTitle: [...document.querySelectorAll('.news-card h3')].filter(el => el.textContent.includes('(김성현)')).map(el => {
+              const range = document.createRange();
+              range.selectNodeContents(el);
+              const lines = new Set([...range.getClientRects()].map(r => r.y)).size;
+              const index = el.firstChild.textContent.indexOf('(김성현)');
+              range.setStart(el.firstChild, index);
+              range.setEnd(el.firstChild, index + '(김성현)'.length);
+              return { lines, nameLines: new Set([...range.getClientRects()].map(r => r.y)).size };
+            }),
           };
         });
-        const expectedWidth = Math.min(1520, width - (width <= 720 ? 32 : 64));
+        const expectedWidth = Math.min(layoutMax, width - 2 * (width <= 720 ? 16 : layoutGutter));
         assert.ok(measured.scrollWidth <= width + 1, `Horizontal overflow: ${pagePath} at ${width}`);
         for (const shell of measured.shells) near(shell, expectedWidth, `${pagePath} shell at ${width}`);
         if (measured.reading !== null) near(measured.reading, Math.min(960, expectedWidth), 'reading width');
@@ -109,6 +126,14 @@ async function run() {
         for (const text of [...measured.publications, ...measured.projectTitles]) assert.ok(text <= 1241, 'list reading width cap');
         if (width > 900) for (const image of measured.media) assert.ok(image <= 481, 'course image width cap');
         if (measured.courseGrid !== null) assert.ok(measured.courseGrid <= 1361, 'compact course row width cap');
+        for (const label of measured.courseLabels) {
+          assert.equal(label.whitespace, 'nowrap', 'course label stays together');
+          assert.equal(label.lines, 1, 'course label uses one line');
+        }
+        for (const title of measured.kimTitle) {
+          assert.equal(title.nameLines, 1, `presenter name stays together at ${width}`);
+          if (width >= 1280) assert.equal(title.lines, 1, `conference headline uses one desktop line at ${width}`);
+        }
         for (const contact of measured.contacts) assert.ok(contact.text.right <= contact.card.right - 16, `Contact text exceeds card padding at ${width}`);
         if (pagePath === '/' || pagePath === '/news/') {
           assert.ok(measured.newsTitles.includes('2026 한국안전학회 추계학술대회 구두 발표 (홍동현)'));
