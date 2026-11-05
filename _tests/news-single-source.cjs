@@ -15,6 +15,10 @@ assert.match(article, /class="article-body">\{\{ content \}\}/);
 assert.match(home, /include modern-news-card\.html item=item/);
 assert.match(news, /include modern-news-card\.html item=item/);
 assert.match(css, /\.news-card \.news-preview\s*\{[^}]*display: -webkit-box;[^}]*-webkit-box-orient: vertical;[^}]*-webkit-line-clamp: 3;[^}]*overflow: hidden;/);
+const previewRule = css.match(/\.news-card \.news-preview\s*\{([^}]*)\}/)[1];
+const contentRule = css.match(/\.news-content\s*\{([^}]*)\}/)[1];
+assert.doesNotMatch(previewRule, /\bmax-width\s*:/, 'News previews must grow with the photo width');
+assert.doesNotMatch(contentRule, /\bmax-width\s*:/, 'News text must not retain the old card width');
 
 for (const file of fs.readdirSync('_cms_news').filter(file => file.endsWith('.md'))) {
   const source = fs.readFileSync(`_cms_news/${file}`, 'utf8');
