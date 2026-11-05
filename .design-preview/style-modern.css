@@ -29,8 +29,8 @@
   --card-space-block: 24px;
   --card-space-inline: 30px;
   --media-inset: 10px;
-  --layout-max: 1520px;
-  --layout-gutter: 32px;
+  --layout-max: 1600px;
+  --layout-gutter: 24px;
 }
 
 body {
@@ -311,11 +311,12 @@ body {
   letter-spacing: 0.03em;
 }
 
-.news-content { max-width: 440px; padding: 21px 0 0; }
+.news-content { padding: 21px 0 0; }
 .news-date { color: #7a4a41; font-size: 0.73rem; letter-spacing: 0.045em; }
-.news-card h3 { margin: 8px 0 10px; font-size: 1.06rem; line-height: 1.45; }
+.news-card h3 { margin: 8px 0 10px; font-size: 1.06rem; line-height: 1.45; word-break: keep-all; overflow-wrap: anywhere; }
 .news-card p { color: #666c70; font-size: 0.84rem; line-height: 1.75; }
 .news-card .news-preview {
+  max-width: 440px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -520,11 +521,12 @@ body {
 .course-meta > div {
   display: grid;
   align-items: start;
-  grid-template-columns: 54px minmax(0, 1fr);
+  grid-template-columns: max-content minmax(0, 1fr);
   gap: 12px;
 }
 
 .course-meta dt {
+  white-space: nowrap;
   padding: 3px 0;
   color: #626a6f;
   font-size: 0.8125rem;
