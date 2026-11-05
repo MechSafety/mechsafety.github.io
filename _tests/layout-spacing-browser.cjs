@@ -13,7 +13,7 @@ const live = process.env.LAYOUT_USE_LIVE === '1';
 const version = process.env.LAYOUT_VERSION || String(Date.now());
 const output = process.env.LAYOUT_TEST_OUTPUT || fs.mkdtempSync(path.join(os.tmpdir(), 'mscs-layout-'));
 const pages = ['/', '/members/', '/research/', '/projects/', '/publications/', '/news/', '/courses/', '/contact/', '/news/2026-10-29-kosos-autumn-oral-hong/'];
-const widths = process.env.LAYOUT_WIDTHS ? process.env.LAYOUT_WIDTHS.split(',').map(Number) : [1920, 1440, 1280, 1201, 1200, 1100, 1024, 900, 768, 720, 390, 320];
+const widths = process.env.LAYOUT_WIDTHS ? process.env.LAYOUT_WIDTHS.split(',').map(Number) : [1920, 1440, 1280, 1200, 1152, 1101, 1100, 900, 768, 720, 390, 320];
 const near = (actual, expected, label) => assert.ok(Math.abs(actual - expected) < 1.5, `${label}: ${actual} vs ${expected}`);
 
 async function run() {
@@ -161,10 +161,10 @@ async function run() {
         if (width > 1000 && measured.intro !== null) assert.ok(measured.intro <= 561, 'intro line width cap');
         for (const video of measured.videos) near(video.width / video.height, 18 / 13, 'video aspect ratio');
         for (const member of measured.members) {
-          assert.equal(member.columns, width <= 1200 ? 1 : 2, `member columns at ${width}`);
-          const memberListWidth = width <= 1200 ? Math.min(720, expectedWidth) : Math.min(1464, expectedWidth * .94);
+          assert.equal(member.columns, width <= 1100 ? 1 : 2, `member columns at ${width}`);
+          const memberListWidth = width <= 1100 ? Math.min(720, expectedWidth) : Math.min(1464, expectedWidth * .94);
           near(member.list.width, memberListWidth, 'compact member list');
-          near(member.card.width, width <= 1200 ? memberListWidth : (memberListWidth - 24) / 2, 'compact member card');
+          near(member.card.width, width <= 1100 ? memberListWidth : (memberListWidth - 24) / 2, 'compact member card');
           near(member.portrait.width, width <= 720 ? 140 : 150, 'unchanged portrait width');
           if (width > 720) near(member.card.height, 180, 'unchanged desktop card height');
           for (const gap of member.gaps) near(gap, 18, 'member label-to-value gap');
