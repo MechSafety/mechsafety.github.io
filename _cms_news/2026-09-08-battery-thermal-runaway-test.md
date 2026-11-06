@@ -1,10 +1,10 @@
 ---
 title: 방재시험연구원 배터리 열폭주 시험
 date: 2026-09-08
-category: 연구실 활동
 images:
-  - /images/uploads/file.png
-  - /images/uploads/file-1.png
+  - /images/uploads/kakaotalk20261106195559722.jpg
+  - /images/uploads/kakaotalk2026110619555972201.jpg
+  - /images/uploads/kakaotalk2026110619555972202.jpg
 redirect_from:
   - /news/2026-10-01/
 published: true
