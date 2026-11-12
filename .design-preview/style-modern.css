@@ -639,6 +639,13 @@ body {
   height: 100%;
   object-fit: cover;
 }
+.research-visual.has-image video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #1c2328;
+}
 .research-visual.has-image { padding: var(--media-inset); }
 .research-placeholder-1::after { content: "01"; }
 .research-placeholder-2::after { content: "02"; }
