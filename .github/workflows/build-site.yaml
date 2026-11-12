@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   build-site:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # Live publishing and preview cleanup share the gh-pages branch.
     concurrency:
       group: gh-pages-publish
