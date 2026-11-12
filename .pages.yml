@@ -119,6 +119,7 @@ content:
             options:
               multiple:
                 max: 3
+          - { name: video, label: 대표 영상 경로, type: string, description: "선택 사항. 예) /images/research/battery-build.mp4 — 입력하면 이미지 대신 영상이 재생되고, 첫 이미지는 로딩 전 썸네일로 쓰입니다." }
           - { name: order, label: 표시 순서, type: number, required: true }
           - { name: published, label: 홈페이지 공개, type: boolean, required: true }
 
