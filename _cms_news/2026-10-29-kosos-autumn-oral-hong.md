@@ -2,7 +2,9 @@
 title: 2026 한국안전학회 추계학술대회 구두 발표 (홍동현)
 date: 2026-10-29
 category: 학술대회
-images: []
+images:
+  - /images/uploads/kosos-autumn-2026-hong-01.jpg
+  - /images/uploads/kosos-autumn-2026-hong-02.jpg
 published: true
 ---
 

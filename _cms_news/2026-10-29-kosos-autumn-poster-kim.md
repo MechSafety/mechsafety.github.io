@@ -4,6 +4,7 @@ date: 2026-10-29
 category: 학술대회
 images:
   - /images/uploads/20261030105255.jpg
+  - /images/uploads/kosos-autumn-2026-kim-02.jpg
 published: true
 ---
 
