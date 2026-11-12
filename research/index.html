@@ -9,40 +9,41 @@
     <meta property="og:site_name" content="MSCS Lab">
     <title>Research | MSCS Lab</title>
     
-    <link rel="stylesheet" href="/.design-preview/style-modern.css?v=1794496356">
+    <link rel="stylesheet" href="/.design-preview/style-modern.css?v=1794496653">
     
   </head>
   <body>
     
 <header class="site-header">
   <div class="nav-shell">
-    <a class="brand" href="/?v=1794496356" title="Mechanical Safety and Computational Simulation Laboratory"><span>MSCS Lab</span></a>
+    <a class="brand" href="/?v=1794496653" title="Mechanical Safety and Computational Simulation Laboratory"><span>MSCS Lab</span></a>
     <nav class="site-nav" lang="en" aria-label="Primary navigation">
-      <a href="/?v=1794496356">Home</a>
+      <a href="/?v=1794496653">Home</a>
       <div class="nav-item">
-        <a href="/members/?v=1794496356">Members</a>
+        <a href="/members/?v=1794496653">Members</a>
         <div class="subnav">
-          <a href="/members/?v=1794496356#current-members">Current Members</a>
-          <a href="/members/?v=1794496356#alumni">Alumni</a>
+          <a href="/members/?v=1794496653#current-members">Current Members</a>
+          <a href="/members/?v=1794496653#alumni">Alumni</a>
         </div>
       </div>
-      <a href="/research/?v=1794496356" aria-current="page">Research</a>
-      <a href="/projects/?v=1794496356">Projects</a>
+      <a href="/research/?v=1794496653" aria-current="page">Research</a>
+      <a href="/projects/?v=1794496653">Projects</a>
       <div class="nav-item">
-        <a href="/publications/?v=1794496356">Publications</a>
+        <a href="/publications/?v=1794496653">Publications</a>
         <div class="subnav">
-          <a href="/publications/?v=1794496356#scie-publications">SCIE</a>
-          <a href="/publications/?v=1794496356#domestic-publications">Domestic Publications</a>
+          <a href="/publications/?v=1794496653#scie-publications">SCIE</a>
+          <a href="/publications/?v=1794496653#domestic-publications">Domestic Publications</a>
         </div>
       </div>
-      <a href="/news/?v=1794496356">News</a>
-      <a href="/courses/?v=1794496356">Courses</a>
-      <a href="/contact/?v=1794496356">Contact</a>
+      <a href="/news/?v=1794496653">News</a>
+      <a href="/courses/?v=1794496653">Courses</a>
+      <a href="/contact/?v=1794496653">Contact</a>
     </nav>
   </div>
 </header>
 
     <main>
+
 <section class="page-hero"><div class="shell"><h1 lang="en">Research</h1></div></section>
 <section class="section alt"><div class="shell"><div class="research-list">
   
@@ -81,7 +82,12 @@
   
   <article class="research-item">
     
-      <div class="research-visual has-image has-video"><video src="/images/research/battery-build.mp4" poster="/images/research/battery-build-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Procedural 3D Modeling with Blender 영상"></video></div>
+      <div class="research-visual has-image has-video">
+        <button class="research-play" type="button" data-video="/images/research/battery-build.mp4" data-title="Procedural 3D Modeling with Blender" aria-label="Procedural 3D Modeling with Blender 영상 재생">
+          <img src="/images/research/battery-build-poster.jpg" alt="">
+          <span class="research-play-icon" aria-hidden="true"></span>
+        </button>
+      </div>
     
     <div class="research-copy">
       <span class="research-number" lang="en">RESEARCH AREA 04</span>
@@ -91,6 +97,58 @@
   </article>
   
 </div></div></section>
+
+
+<dialog class="research-dialog" id="research-dialog" aria-labelledby="research-dialog-title">
+  <div class="research-dialog-header">
+<h2 id="research-dialog-title" lang="en"></h2>
+<button type="button" id="research-dialog-close">닫기 ×</button>
+</div>
+  <video id="research-dialog-video" controls playsinline preload="none"></video>
+</dialog>
+<style>
+  .research-play { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+  .research-play img, .research-play video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .research-play-icon { position: absolute; top: 50%; left: 50%; width: 58px; height: 58px; border-radius: 50%; background: rgba(28, 35, 40, 0.72); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85); transform: translate(-50%, -50%); transition: background .15s, transform .15s; }
+  .research-play-icon::after { content: ""; position: absolute; top: 50%; left: 54%; border-style: solid; border-width: 11px 0 11px 18px; border-color: transparent transparent transparent #fff; transform: translate(-50%, -50%); }
+  .research-play:hover .research-play-icon, .research-play:focus-visible .research-play-icon { background: #8c4437; transform: translate(-50%, -50%) scale(1.06); }
+  .research-play:focus-visible, .research-dialog button:focus-visible { outline: 3px solid #94543e; outline-offset: 3px; }
+  .research-dialog { width: min(1160px, 96vw); max-height: 94dvh; padding: 0; border: 1px solid #899691; background: #f7f6f2; color: #243039; overflow: auto; }
+  .research-dialog::backdrop { background: #101b24d9; }
+  .research-dialog-header { position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 12px 20px; background: #f7f6f2; border-bottom: 1px solid #d4d9d4; }
+  .research-dialog h2 { margin: 0; font-size: 1rem; font-family: inherit; font-weight: 600; }
+  .research-dialog-header button { min-height: 38px; padding: 6px 12px; border: 1px solid #c0c8c2; background: transparent; color: inherit; font: inherit; font-size: .8rem; cursor: pointer; }
+  .research-dialog video { display: block; width: 100%; max-height: 80dvh; background: #1c2328; }
+  @media (prefers-reduced-motion: reduce) { .research-play-icon { transition: none; } }
+</style>
+<script>
+(() => {
+  const dialog = document.getElementById('research-dialog');
+  const video = document.getElementById('research-dialog-video');
+  const title = document.getElementById('research-dialog-title');
+  let opener = null;
+  document.querySelectorAll('.research-play').forEach(button => {
+    button.addEventListener('click', () => {
+      opener = button;
+      title.textContent = button.dataset.title;
+      video.src = button.dataset.video;
+      dialog.showModal();
+      video.play().catch(() => {});
+    });
+  });
+  document.getElementById('research-dialog-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => {
+    video.pause(); video.removeAttribute('src'); video.load();
+    opener?.focus();
+  });
+  dialog.addEventListener('click', event => {
+    if (event.target !== dialog) return;
+    const r = dialog.getBoundingClientRect();
+    if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close();
+  });
+})();
+</script>
+
 </main>
     <footer class="site-footer">
   <div class="shell">
