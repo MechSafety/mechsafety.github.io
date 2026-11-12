@@ -2,7 +2,8 @@
 title: 2026 한국안전학회 추계학술대회 포스터 발표 (김성현)
 date: 2026-10-29
 category: 학술대회
-images: []
+images:
+  - /images/uploads/20261030105255.jpg
 published: true
 ---
 
