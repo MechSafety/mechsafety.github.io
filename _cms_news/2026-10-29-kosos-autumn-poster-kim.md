@@ -5,6 +5,7 @@ category: 학술대회
 images:
   - /images/uploads/20261030105255.jpg
   - /images/uploads/kosos-autumn-2026-kim-02.jpg
+image_position: center 25%
 published: true
 ---
 
