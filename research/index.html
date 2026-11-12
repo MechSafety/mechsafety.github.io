@@ -8,7 +8,9 @@ section: research
 <section class="section alt"><div class="shell"><div class="research-list">
   {% for item in research_items %}
   <article class="research-item">
-    {% if item.images and item.images.size > 0 %}
+    {% if item.video %}
+      <div class="research-visual has-image has-video"><video src="{{ item.video | relative_url }}"{% if item.images and item.images.size > 0 %} poster="{{ item.images[0] | relative_url }}"{% endif %} autoplay muted loop playsinline preload="metadata" aria-label="{{ item.title }} 영상"></video></div>
+    {% elsif item.images and item.images.size > 0 %}
       <div class="research-visual has-image"><img src="{{ item.images[0] | relative_url }}" alt=""></div>
     {% else %}
       <div class="research-visual research-placeholder-{{ forloop.index }}" aria-hidden="true"></div>
