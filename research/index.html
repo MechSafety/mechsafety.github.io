@@ -11,9 +11,9 @@ section: research
   <article class="research-item">
     {% if item.video %}
       <div class="research-visual has-image has-video">
-        <button class="research-play" type="button" data-video="{{ item.video | relative_url }}" data-title="{{ item.title | escape }}" aria-label="{{ item.title | escape }} 영상 재생">
-          {% if item.images and item.images.size > 0 %}<img src="{{ item.images[0] | relative_url }}" alt="">{% else %}<video src="{{ item.video | relative_url }}#t=0.1" muted playsinline preload="metadata"></video>{% endif %}
-          <span class="research-play-icon" aria-hidden="true"></span>
+        <button class="research-play" type="button" data-video="{{ item.video | relative_url }}" data-title="{{ item.title | escape }}" aria-label="{{ item.title | escape }} 영상 확대">
+          <video muted loop playsinline preload="none" data-src="{{ item.video | relative_url }}"{% if item.images and item.images.size > 0 %} poster="{{ item.images[0] | relative_url }}"{% endif %}></video>
+          <span class="research-expand" aria-hidden="true">↗</span>
         </button>
       </div>
     {% elsif item.images and item.images.size > 0 %}
@@ -36,11 +36,10 @@ section: research
   <video id="research-dialog-video" controls playsinline preload="none"></video>
 </dialog>
 <style>
-  .research-play { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
-  .research-play img, .research-play video { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .research-play-icon { position: absolute; top: 50%; left: 50%; width: 58px; height: 58px; border-radius: 50%; background: rgba(28, 35, 40, 0.72); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85); transform: translate(-50%, -50%); transition: background .15s, transform .15s; }
-  .research-play-icon::after { content: ""; position: absolute; top: 50%; left: 54%; border-style: solid; border-width: 11px 0 11px 18px; border-color: transparent transparent transparent #fff; transform: translate(-50%, -50%); }
-  .research-play:hover .research-play-icon, .research-play:focus-visible .research-play-icon { background: #8c4437; transform: translate(-50%, -50%) scale(1.06); }
+  .research-play { position: relative; display: block; width: 100%; height: 100%; padding: 0; overflow: hidden; border: 0; background: #1c2328; cursor: zoom-in; }
+  .research-play video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .research-expand { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 28px; height: 28px; color: #2e3a42; background: #ffffffd9; border: 1px solid #d5dbd7; font-size: 16px; line-height: 1; opacity: 0; transition: opacity .15s; }
+  .research-play:hover .research-expand, .research-play:focus-visible .research-expand { opacity: 1; }
   .research-play:focus-visible, .research-dialog button:focus-visible { outline: 3px solid #94543e; outline-offset: 3px; }
   .research-dialog { width: min(1160px, 96vw); max-height: 94dvh; padding: 0; border: 1px solid #899691; background: #f7f6f2; color: #243039; overflow: auto; }
   .research-dialog::backdrop { background: #101b24d9; }
@@ -48,33 +47,59 @@ section: research
   .research-dialog h2 { margin: 0; font-size: 1rem; font-family: inherit; font-weight: 600; }
   .research-dialog-header button { min-height: 38px; padding: 6px 12px; border: 1px solid #c0c8c2; background: transparent; color: inherit; font: inherit; font-size: .8rem; cursor: pointer; }
   .research-dialog video { display: block; width: 100%; max-height: 80dvh; background: #1c2328; }
-  @media (prefers-reduced-motion: reduce) { .research-play-icon { transition: none; } }
+  @media (hover: none) { .research-expand { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .research-expand { transition: none; } }
 </style>
 <script>
 (() => {
   const dialog = document.getElementById('research-dialog');
-  const video = document.getElementById('research-dialog-video');
+  const expanded = document.getElementById('research-dialog-video');
   const title = document.getElementById('research-dialog-title');
+  const buttons = [...document.querySelectorAll('.research-play')];
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const visible = new Map();
   let opener = null;
-  document.querySelectorAll('.research-play').forEach(button => {
+  const update = () => {
+    buttons.forEach(button => {
+      const video = button.querySelector('video');
+      const play = !reduced.matches && !navigator.connection?.saveData && visible.get(button) !== false && !document.hidden && !dialog.open;
+      if (play) {
+        if (!video.getAttribute('src')) video.src = video.dataset.src;
+        video.play().catch(() => {});
+      } else video.pause();
+    });
+  };
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => visible.set(entry.target, entry.isIntersecting));
+      update();
+    }, {rootMargin: '80px'});
+    buttons.forEach(button => observer.observe(button));
+  }
+  document.addEventListener('visibilitychange', update);
+  reduced.addEventListener('change', update);
+  buttons.forEach(button => {
     button.addEventListener('click', () => {
       opener = button;
       title.textContent = button.dataset.title;
-      video.src = button.dataset.video;
+      expanded.poster = button.querySelector('video').poster;
+      expanded.src = button.dataset.video;
       dialog.showModal();
-      video.play().catch(() => {});
+      update();
+      expanded.play().catch(() => {});
     });
   });
   document.getElementById('research-dialog-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
-    video.pause(); video.removeAttribute('src'); video.load();
-    opener?.focus();
+    expanded.pause(); expanded.removeAttribute('src'); expanded.load();
+    update(); opener?.focus();
   });
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
     const r = dialog.getBoundingClientRect();
     if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close();
   });
+  update();
 })();
 </script>
 {% endif %}
