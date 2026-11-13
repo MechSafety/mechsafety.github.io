@@ -5,6 +5,7 @@ images:
   - /images/uploads/kakaotalk20261106195559722.jpg
   - /images/uploads/kakaotalk2026110619555972201.jpg
   - /images/uploads/kakaotalk2026110619555972202.jpg
+  - /images/uploads/kfpa-thermal-runaway-fire.gif
 redirect_from:
   - /news/2026-10-01/
 published: true
