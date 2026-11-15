@@ -9,35 +9,35 @@
     <meta property="og:site_name" content="MSCS Lab">
     <title>Research | MSCS Lab</title>
     
-    <link rel="stylesheet" href="/.design-preview/style-modern.css?v=1794555664">
+    <link rel="stylesheet" href="/.design-preview/style-modern.css?v=1794723417">
     
   </head>
   <body>
     
 <header class="site-header">
   <div class="nav-shell">
-    <a class="brand" href="/?v=1794555664" title="Mechanical Safety and Computational Simulation Laboratory"><span>MSCS Lab</span></a>
+    <a class="brand" href="/?v=1794723417" title="Mechanical Safety and Computational Simulation Laboratory"><span>MSCS Lab</span></a>
     <nav class="site-nav" lang="en" aria-label="Primary navigation">
-      <a href="/?v=1794555664">Home</a>
+      <a href="/?v=1794723417">Home</a>
       <div class="nav-item">
-        <a href="/members/?v=1794555664">Members</a>
+        <a href="/members/?v=1794723417">Members</a>
         <div class="subnav">
-          <a href="/members/?v=1794555664#current-members">Current Members</a>
-          <a href="/members/?v=1794555664#alumni">Alumni</a>
+          <a href="/members/?v=1794723417#current-members">Current Members</a>
+          <a href="/members/?v=1794723417#alumni">Alumni</a>
         </div>
       </div>
-      <a href="/research/?v=1794555664" aria-current="page">Research</a>
-      <a href="/projects/?v=1794555664">Projects</a>
+      <a href="/research/?v=1794723417" aria-current="page">Research</a>
+      <a href="/projects/?v=1794723417">Projects</a>
       <div class="nav-item">
-        <a href="/publications/?v=1794555664">Publications</a>
+        <a href="/publications/?v=1794723417">Publications</a>
         <div class="subnav">
-          <a href="/publications/?v=1794555664#scie-publications">SCIE</a>
-          <a href="/publications/?v=1794555664#domestic-publications">Domestic Publications</a>
+          <a href="/publications/?v=1794723417#scie-publications">SCIE</a>
+          <a href="/publications/?v=1794723417#domestic-publications">Domestic Publications</a>
         </div>
       </div>
-      <a href="/news/?v=1794555664">News</a>
-      <a href="/courses/?v=1794555664">Courses</a>
-      <a href="/contact/?v=1794555664">Contact</a>
+      <a href="/news/?v=1794723417">News</a>
+      <a href="/courses/?v=1794723417">Courses</a>
+      <a href="/contact/?v=1794723417">Contact</a>
     </nav>
   </div>
 </header>
@@ -71,12 +71,17 @@
   
   <article class="research-item">
     
-      <div class="research-visual research-placeholder-3" aria-hidden="true"></div>
+      <div class="research-visual has-image has-video">
+        <button class="research-play" type="button" data-video="/images/research/fire-segmentation.mp4" data-title="AI-Based Fire and Smoke Detection" aria-label="AI-Based Fire and Smoke Detection 영상 확대">
+          <video src="/images/research/fire-segmentation.mp4" autoplay muted loop playsinline preload="auto" aria-label="AI-Based Fire and Smoke Detection 영상"></video>
+          <span class="research-expand" aria-hidden="true">↗</span>
+        </button>
+      </div>
     
     <div class="research-copy">
       <span class="research-number" lang="en">RESEARCH AREA 03</span>
       <h2 lang="en">AI-Based Fire and Smoke Detection</h2>
-      <p>머신러닝, 컴퓨터 비전과 데이터 분석을 활용해 상태를 진단하고 고장을 예측하며 구조 건전성과 위험을 평가합니다.</p>
+      <p>YOLOv8 기반 인스턴스 세그멘테이션으로 화염 영역을 픽셀 단위로 검출하고, 배터리 열폭주 시험 영상에 적용해 발화 시점과 화염 규모의 변화를 정량적으로 분석합니다. 이를 드론 영상 기반 화재 감시로 확장하고 있습니다.</p>
     </div>
   </article>
   
@@ -84,7 +89,7 @@
     
       <div class="research-visual has-image has-video">
         <button class="research-play" type="button" data-video="/images/research/battery-build.mp4" data-title="Procedural 3D Modeling with Blender" aria-label="Procedural 3D Modeling with Blender 영상 확대">
-          <video muted loop playsinline preload="none" data-src="/images/research/battery-build.mp4" poster="/images/research/battery-build-poster.jpg"></video>
+          <video src="/images/research/battery-build.mp4" autoplay muted loop playsinline preload="auto" aria-label="Procedural 3D Modeling with Blender 영상"></video>
           <span class="research-expand" aria-hidden="true">↗</span>
         </button>
       </div>
@@ -127,50 +132,30 @@
   const expanded = document.getElementById('research-dialog-video');
   const title = document.getElementById('research-dialog-title');
   const buttons = [...document.querySelectorAll('.research-play')];
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const visible = new Map();
+  const tiles = buttons.map(button => button.querySelector('video'));
   let opener = null;
-  const update = () => {
-    buttons.forEach(button => {
-      const video = button.querySelector('video');
-      const play = !reduced.matches && !navigator.connection?.saveData && visible.get(button) !== false && !document.hidden && !dialog.open;
-      if (play) {
-        if (!video.getAttribute('src')) video.src = video.dataset.src;
-        video.play().catch(() => {});
-      } else video.pause();
-    });
-  };
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => visible.set(entry.target, entry.isIntersecting));
-      update();
-    }, {rootMargin: '80px'});
-    buttons.forEach(button => observer.observe(button));
-  }
-  document.addEventListener('visibilitychange', update);
-  reduced.addEventListener('change', update);
+  const playTiles = () => tiles.forEach(video => { video.muted = true; video.play().catch(() => {}); });
   buttons.forEach(button => {
     button.addEventListener('click', () => {
       opener = button;
       title.textContent = button.dataset.title;
-      expanded.poster = button.querySelector('video').poster;
       expanded.src = button.dataset.video;
+      tiles.forEach(video => video.pause());
       dialog.showModal();
-      update();
       expanded.play().catch(() => {});
     });
   });
   document.getElementById('research-dialog-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
     expanded.pause(); expanded.removeAttribute('src'); expanded.load();
-    update(); opener?.focus();
+    playTiles(); opener?.focus();
   });
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
     const r = dialog.getBoundingClientRect();
     if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close();
   });
-  update();
+  playTiles();
 })();
 </script>
 
