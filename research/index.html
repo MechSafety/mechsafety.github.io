@@ -12,7 +12,7 @@ section: research
     {% if item.video %}
       <div class="research-visual has-image has-video">
         <button class="research-play" type="button" data-video="{{ item.video | relative_url }}" data-title="{{ item.title | escape }}" aria-label="{{ item.title | escape }} 영상 확대">
-          <video muted loop playsinline preload="none" data-src="{{ item.video | relative_url }}"{% if item.images and item.images.size > 0 %} poster="{{ item.images[0] | relative_url }}"{% endif %}></video>
+          <video src="{{ item.video | relative_url }}" autoplay muted loop playsinline preload="auto" aria-label="{{ item.title | escape }} 영상"></video>
           <span class="research-expand" aria-hidden="true">↗</span>
         </button>
       </div>
@@ -56,50 +56,30 @@ section: research
   const expanded = document.getElementById('research-dialog-video');
   const title = document.getElementById('research-dialog-title');
   const buttons = [...document.querySelectorAll('.research-play')];
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const visible = new Map();
+  const tiles = buttons.map(button => button.querySelector('video'));
   let opener = null;
-  const update = () => {
-    buttons.forEach(button => {
-      const video = button.querySelector('video');
-      const play = !reduced.matches && !navigator.connection?.saveData && visible.get(button) !== false && !document.hidden && !dialog.open;
-      if (play) {
-        if (!video.getAttribute('src')) video.src = video.dataset.src;
-        video.play().catch(() => {});
-      } else video.pause();
-    });
-  };
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => visible.set(entry.target, entry.isIntersecting));
-      update();
-    }, {rootMargin: '80px'});
-    buttons.forEach(button => observer.observe(button));
-  }
-  document.addEventListener('visibilitychange', update);
-  reduced.addEventListener('change', update);
+  const playTiles = () => tiles.forEach(video => { video.muted = true; video.play().catch(() => {}); });
   buttons.forEach(button => {
     button.addEventListener('click', () => {
       opener = button;
       title.textContent = button.dataset.title;
-      expanded.poster = button.querySelector('video').poster;
       expanded.src = button.dataset.video;
+      tiles.forEach(video => video.pause());
       dialog.showModal();
-      update();
       expanded.play().catch(() => {});
     });
   });
   document.getElementById('research-dialog-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
     expanded.pause(); expanded.removeAttribute('src'); expanded.load();
-    update(); opener?.focus();
+    playTiles(); opener?.focus();
   });
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
     const r = dialog.getBoundingClientRect();
     if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close();
   });
-  update();
+  playTiles();
 })();
 </script>
 {% endif %}
