@@ -119,7 +119,25 @@ content:
             options:
               multiple:
                 max: 3
-          - { name: video, label: 대표 영상 경로, type: string, description: "선택 사항. 예) /images/research/battery-build.mp4 — 입력하면 이미지 대신 영상이 재생되고, 첫 이미지는 로딩 전 썸네일로 쓰입니다." }
+          - name: videos
+            label: 영상
+            type: object
+            description: 연구 카드에 영상이 있으면 이미지 대신 표시됩니다. 저장한 내용은 Research와 Home에 함께 반영됩니다.
+            list:
+              max: 4
+              collapsible:
+                collapsed: true
+                summary: "{index}. {title}"
+            fields:
+              - { name: title, label: 영상 제목, type: string, description: "비워 두면 연구 분야명이 사용됩니다." }
+              - name: video
+                label: 영상 파일
+                type: file
+                required: true
+                options:
+                  extensions: [mp4]
+              - { name: poster, label: 재생 전 이미지, type: image }
+              - { name: note, label: 확대 화면 설명, type: text }
           - { name: order, label: 표시 순서, type: number, required: true }
           - { name: published, label: 홈페이지 공개, type: boolean, required: true }
 

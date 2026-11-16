@@ -52,7 +52,7 @@ async function run() {
     const cssFiles = new Map([
       ['/.design-preview/style-modern.css', '.design-preview/style-modern.css'],
       ['/.design-preview/style.css', '.design-preview/style.css'],
-      ['/assets/css/home-simulations.css', 'assets/css/home-simulations.css'],
+      ['/assets/css/home-intro.css', 'assets/css/home-intro.css'],
     ]);
     await context.route('**/*', async route => {
       const request = route.request();
@@ -92,8 +92,6 @@ async function run() {
             shells: [...document.querySelectorAll('.shell, .nav-shell')].map(el => rect(el).width),
             reading: document.querySelector('.content-shell') ? rect(document.querySelector('.content-shell')).width : null,
             intro: document.querySelector('.home-introduction') ? rect(document.querySelector('.home-introduction')).width : null,
-            showcase: document.querySelector('.simulation-showcase') ? rect(document.querySelector('.simulation-showcase')).width : null,
-            videos: [...document.querySelectorAll('.simulation-open video')].map(rect),
             members: [...document.querySelectorAll('.member-row')].map(card => ({
               card: rect(card),
               list: rect(card.closest('.member-list')),
@@ -162,9 +160,7 @@ async function run() {
         assert.ok(measured.scrollWidth <= width + 1, `Horizontal overflow: ${pagePath} at ${width}`);
         for (const shell of measured.shells) near(shell, expectedWidth, `${pagePath} shell at ${width}`);
         if (measured.reading !== null) near(measured.reading, Math.min(960, expectedWidth), 'reading width');
-        if (measured.showcase !== null) assert.ok(measured.showcase <= 841, 'video panel width cap');
-        if (width > 1000 && measured.intro !== null) assert.ok(measured.intro <= 561, 'intro line width cap');
-        for (const video of measured.videos) near(video.width / video.height, 18 / 13, 'video aspect ratio');
+        if (measured.intro !== null) assert.ok(measured.intro <= 751, 'intro line width cap');
         for (const member of measured.members) {
           assert.equal(member.columns, width <= 1100 ? 1 : 2, `member columns at ${width}`);
           const memberListWidth = width <= 1100 ? Math.min(720, expectedWidth) : Math.min(1464, expectedWidth * .94);

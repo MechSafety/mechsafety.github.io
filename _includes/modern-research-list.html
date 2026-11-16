@@ -1,0 +1,52 @@
+{% assign research_items = site.cms_research | where: 'published', true | sort: 'order' %}
+{% assign has_research_videos = false %}
+{% assign research_heading = include.heading_tag | default: 'h2' %}
+{% if research_items.size > 0 %}
+<div class="research-list">
+  {% for item in research_items %}
+  {% assign clips = item.videos | where_exp: 'clip', 'clip.video and clip.video != empty' %}
+  {% assign first_image = item.images | first %}
+  <article class="research-item">
+    {% if clips.size > 0 %}
+      {% assign has_research_videos = true %}
+      <div class="research-visual has-image has-video">
+        <div class="research-clips{% if clips.size > 1 %} is-group{% endif %}">
+          {% for clip in clips %}
+            {% assign clip_title = clip.title | default: item.title %}
+            {% assign clip_poster = clip.poster %}
+            {% if clips.size == 1 %}{% assign clip_poster = clip_poster | default: first_image %}{% endif %}
+            <button class="research-play" type="button" data-title="{{ clip_title | escape }}" data-note="{{ clip.note | escape }}" aria-label="{{ clip_title | escape }} 영상 확대">
+              <video muted loop playsinline preload="none" data-src="{{ clip.video | relative_url | escape }}"{% if clip_poster %} poster="{{ clip_poster | relative_url | escape }}"{% endif %} aria-hidden="true"></video>
+              {% if clips.size > 1 %}<span class="research-clip-title" lang="en">{{ clip_title | escape }}</span>{% endif %}
+              <span class="research-expand" aria-hidden="true">↗</span>
+            </button>
+          {% endfor %}
+        </div>
+      </div>
+    {% elsif first_image %}
+      <div class="research-visual has-image"><img src="{{ first_image | relative_url | escape }}" alt="" loading="lazy"></div>
+    {% else %}
+      <div class="research-visual research-placeholder-{{ forloop.index }}" aria-hidden="true"></div>
+    {% endif %}
+    <div class="research-copy">
+      <span class="research-number" lang="en">RESEARCH AREA {{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+      <{{ research_heading }} class="research-title" lang="en">{{ item.title | escape }}</{{ research_heading }}>
+      <p lang="ko">{{ item.summary | escape }}</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<p class="empty-state" lang="ko">연구 내용을 준비하고 있습니다.</p>
+{% endif %}
+{% if has_research_videos %}
+<dialog class="research-dialog" id="research-dialog" aria-labelledby="research-dialog-title">
+  <div class="research-dialog-header">
+    <h2 id="research-dialog-title" lang="en"></h2>
+    <button type="button" id="research-dialog-close">닫기 ×</button>
+  </div>
+  <video id="research-dialog-video" controls muted playsinline preload="none"></video>
+  <p id="research-dialog-note" lang="ko" hidden></p>
+</dialog>
+<script src="{{ '/assets/js/research-media.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+{% endif %}

@@ -11,14 +11,20 @@ lang: en
       <p class="home-lab-name">{{ site.title }}</p>
       <p class="eyebrow">{{ home.eyebrow }}</p>
       <h1>{{ home.title }}</h1>
-      {% if home.recruitment_title or home.recruitment_text %}
-      <aside class="home-recruitment">
-        {% if home.recruitment_title %}<h2>{{ home.recruitment_title }}</h2>{% endif %}
-        {% if home.recruitment_text %}<p lang="ko">{{ home.recruitment_text }}</p>{% endif %}
-      </aside>
-      {% endif %}
     </div>
-    {% include modern-simulation-panel.html %}
+    {% if home.recruitment_title or home.recruitment_text %}
+    <aside class="home-recruitment">
+      {% if home.recruitment_title %}<h2>{{ home.recruitment_title }}</h2>{% endif %}
+      {% if home.recruitment_text %}<p lang="ko">{{ home.recruitment_text }}</p>{% endif %}
+    </aside>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section alt home-research" aria-labelledby="home-research-title">
+  <div class="shell">
+    <div class="section-heading"><h2 id="home-research-title">Research</h2></div>
+    {% include modern-research-list.html heading_tag="h3" %}
   </div>
 </section>
 
