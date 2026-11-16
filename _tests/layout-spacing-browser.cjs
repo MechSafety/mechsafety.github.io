@@ -102,7 +102,12 @@ async function run() {
               text: [...card.querySelectorAll('h3, dd, dd a')].map(rect),
               gaps: [...card.querySelectorAll('.member-data > div')].map(row => rect(row.querySelector('dd')).x - rect(row.querySelector('dt')).right),
             })),
-            research: [...document.querySelectorAll('.research-visual')].map(el => rect(el).width),
+            research: [...document.querySelectorAll('.research-item')].map(el => ({
+              card: rect(el),
+              media: rect(el.querySelector('.research-visual')),
+              copy: rect(el.querySelector('.research-copy')),
+              columns: getComputedStyle(el.closest('.research-list')).gridTemplateColumns.split(' ').length,
+            })),
             summaries: [...document.querySelectorAll('.research-copy p')].map(el => rect(el).width),
             publications: [...document.querySelectorAll('.publication-copy')].map(el => rect(el).width),
             projectTitles: [...document.querySelectorAll('.project-copy h2')].map(el => rect(el).width),
@@ -172,7 +177,12 @@ async function run() {
             assert.ok(text.right <= member.card.right + 1 && text.bottom <= member.card.bottom + 1, `Clipped member text at ${width}`);
           }
         }
-        if (width > 720) for (const image of measured.research) assert.ok(image <= 421, 'research image width cap');
+        for (const research of measured.research) {
+          assert.equal(research.columns, width > 720 ? 2 : 1, 'research grid columns');
+          near(research.media.width, research.card.width - 2, 'research media fills card');
+          near(research.media.height, research.media.width * 9 / 16, 'research media frame ratio');
+          near(research.copy.y, research.media.bottom, 'research description is beneath media');
+        }
         for (const summary of measured.summaries) assert.ok(summary <= 761, 'research reading width cap');
         for (const text of [...measured.publications, ...measured.projectTitles]) assert.ok(text <= 1241, 'list reading width cap');
         for (const project of measured.projects) {
