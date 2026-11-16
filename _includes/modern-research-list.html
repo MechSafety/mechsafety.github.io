@@ -24,7 +24,15 @@
         </div>
       </div>
     {% elsif first_image %}
-      <div class="research-visual has-image"><img src="{{ first_image | relative_url | escape }}" alt="" loading="lazy"></div>
+      <div class="research-visual has-image">
+        <a class="research-image-link" href="{{ first_image | relative_url | escape }}" target="_blank" rel="noopener" aria-label="{{ item.title | escape }} 이미지 확대 (새 탭)">
+          <picture>
+            {% if item.image_still and item.image_still != empty %}<source media="(prefers-reduced-motion: reduce)" srcset="{{ item.image_still | relative_url | escape }}">{% endif %}
+            <img src="{{ first_image | relative_url | escape }}" alt="{{ item.title | escape }}" loading="lazy" decoding="async">
+          </picture>
+          <span class="research-expand" aria-hidden="true">↗</span>
+        </a>
+      </div>
     {% else %}
       <div class="research-visual research-placeholder-{{ forloop.index }}" aria-hidden="true"></div>
     {% endif %}

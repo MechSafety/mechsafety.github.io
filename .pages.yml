@@ -119,6 +119,7 @@ content:
             options:
               multiple:
                 max: 3
+          - { name: image_still, label: GIF 정지 이미지 (선택), type: image, description: "기기에서 화면 움직임을 줄이도록 설정한 경우 표시됩니다." }
           - name: videos
             label: 영상
             type: object

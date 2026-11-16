@@ -6,6 +6,8 @@ const read = file => fs.readFileSync(file, 'utf8');
 const home = read('index.html');
 const research = read('research/index.html');
 const shared = read('_includes/modern-research-list.html');
+const styles = read('.design-preview/style-modern.css');
+const mechanics = read('_cms_research/01-mechanical-safety.md');
 const clipFiles = [
   '02-computational-modeling-and-simulation',
   '03-data-informed-engineering-methods',
@@ -33,10 +35,23 @@ assert.match(shared, /unless include\.hide_summary %\}<p lang="ko">\{\{ item\.su
 assert.match(shared, /site\.cms_research \| where: 'published', true \| sort: 'order'/);
 assert.match(shared, /for clip in clips/);
 assert.match(shared, /elsif first_image/);
+const figure = mechanics.match(/^images:\r?\n  - (\/images\/research\/[^\r\n]+\.gif)$/m)[1];
+const still = mechanics.match(/^image_still: (\/images\/research\/[^\r\n]+\.png)$/m)[1];
+const figureBytes = fs.readFileSync(figure.slice(1));
+const stillBytes = fs.readFileSync(still.slice(1));
+assert.equal(figureBytes.toString('ascii', 0, 6), 'GIF89a');
+assert.ok(figureBytes.includes(Buffer.from('NETSCAPE2.0')));
+assert.equal(stillBytes.toString('hex', 0, 8), '89504e470d0a1a0a');
+assert.equal(figureBytes.readUInt16LE(6), stillBytes.readUInt32BE(16));
+assert.equal(figureBytes.readUInt16LE(8), stillBytes.readUInt32BE(20));
+assert.match(shared, /class="research-image-link" href="\{\{ first_image \| relative_url \| escape \}\}"/);
+assert.match(shared, /<source media="\(prefers-reduced-motion: reduce\)" srcset="\{\{ item\.image_still \| relative_url \| escape \}\}">/);
+assert.match(styles, /\.research-image-link img\s*\{\s*object-fit: contain;/);
 assert.match(shared, /research-placeholder-/);
 assert.match(home, /Latest News/);
 assert.ok(!fs.existsSync('_data/cms/simulation_media.json'));
 const editor = read('.pages.yml').split('      - name: research')[1].split('      - name: publications')[0];
+assert.match(editor, /name: image_still[^\r\n]+type: image/);
 assert.match(editor, /name: videos[\s\S]*type: object[\s\S]*max: 4[\s\S]*type: file[\s\S]*extensions: \[mp4\]/);
 
 class Element {
