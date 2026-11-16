@@ -1,0 +1,13 @@
+.home-hero { padding: 60px 0 56px; background: #f0efea; border-bottom: 1px solid #d4d5cf; }
+.home-hero-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); align-items: center; gap: 32px clamp(36px, 7vw, 96px); }
+.home-introduction { max-width: 750px; }
+.home-lab-name { margin: 0 0 14px; font-size: 1.5rem; font-weight: 700; letter-spacing: -.025em; color: #1d262c; }
+.home-introduction .eyebrow { display: block; margin: 0 0 14px; color: #4b555b; font-size: .91rem; font-weight: 550; letter-spacing: 0; line-height: 1.9; text-transform: none; }
+.home-introduction .eyebrow::before { display: none; }
+.home-introduction h1 { margin: 0; font-family: var(--font-heading); font-size: clamp(1.6rem, 2.05vw, 2rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.5; color: #1c252a; }
+.home-recruitment { padding: 6px 0 6px 24px; border-left: 1px solid #c3c6c2; }
+.home-recruitment h2 { margin: 0 0 7px; font-family: var(--font-body); font-size: .91rem; font-weight: 550; line-height: 1.65; letter-spacing: -.01em; color: #3f4a51; }
+.home-recruitment p { margin: 0; color: #59636a; font-size: .82rem; line-height: 1.7; }
+.home-research { padding-block: 56px 0; }
+@media (max-width: 900px) { .home-hero { padding: 40px 0; } .home-hero-layout { grid-template-columns: 1fr; gap: 22px; } .home-recruitment { padding: 16px 0 0; border-left: 0; border-top: 1px solid #c3c6c2; } .home-research { padding-top: 40px; } }
+@media (max-width: 440px) { .home-hero { padding: 32px 0 28px; } .home-lab-name { font-size: 1.35rem; } .home-introduction .eyebrow { font-size: .78rem; } .home-introduction h1 { font-size: 1.43rem; } .home-recruitment h2 { font-size: .82rem; } .home-recruitment p { font-size: .76rem; } }
