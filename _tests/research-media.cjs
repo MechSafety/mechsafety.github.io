@@ -24,10 +24,12 @@ for (const asset of [...videos, ...posters]) {
   assert.ok(bytes.length > 1000);
   if (asset.endsWith('.mp4')) assert.equal(bytes.toString('ascii', 4, 8), 'ftyp');
 }
-assert.match(home, /include modern-research-list\.html heading_tag="h3"/);
+assert.match(home, /include modern-research-list\.html heading_tag="h3" hide_summary=true/);
 assert.match(home, /<div class="shell home-hero-layout">\s*<div class="home-introduction">[\s\S]*?<aside class="home-recruitment">[\s\S]*?<\/aside>\s*\{% endif %\}\s*<\/div>\s*<section class="home-research"/);
 assert.doesNotMatch(home, /class="section alt home-research"/);
 assert.match(research, /include modern-research-list\.html heading_tag="h2"/);
+assert.doesNotMatch(research, /hide_summary/);
+assert.match(shared, /unless include\.hide_summary %\}<p lang="ko">\{\{ item\.summary \| escape \}\}<\/p>\{% endunless/);
 assert.match(shared, /site\.cms_research \| where: 'published', true \| sort: 'order'/);
 assert.match(shared, /for clip in clips/);
 assert.match(shared, /elsif first_image/);

@@ -192,8 +192,10 @@ async function run() {
           assert.equal(research.columns, width > 720 ? 2 : 1, 'research grid columns');
           near(research.media.width, research.card.width - 2, 'research media fills card');
           near(research.media.height, research.media.width * 9 / 16, 'research media frame ratio');
-          near(research.copy.y, research.media.bottom, 'research description is beneath media');
+          near(research.copy.y, research.media.bottom, 'research caption is beneath media');
         }
+        if (pagePath === '/') assert.equal(measured.summaries.length, 0, 'Home research uses titles without summaries');
+        if (pagePath === '/research/') assert.equal(measured.summaries.length, measured.research.length, 'Research still shows its descriptions');
         for (const summary of measured.summaries) assert.ok(summary <= 761, 'research reading width cap');
         for (const text of [...measured.publications, ...measured.projectTitles]) assert.ok(text <= 1241, 'list reading width cap');
         for (const project of measured.projects) {

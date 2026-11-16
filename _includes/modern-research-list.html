@@ -31,7 +31,7 @@
     <div class="research-copy">
       <span class="research-number" lang="en">RESEARCH AREA {{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
       <{{ research_heading }} class="research-title" lang="en">{{ item.title | escape }}</{{ research_heading }}>
-      <p lang="ko">{{ item.summary | escape }}</p>
+      {% unless include.hide_summary %}<p lang="ko">{{ item.summary | escape }}</p>{% endunless %}
     </div>
   </article>
   {% endfor %}
