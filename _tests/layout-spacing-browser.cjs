@@ -91,7 +91,12 @@ async function run() {
             scrollWidth: document.documentElement.scrollWidth,
             shells: [...document.querySelectorAll('.shell, .nav-shell')].map(el => rect(el).width),
             reading: document.querySelector('.content-shell') ? rect(document.querySelector('.content-shell')).width : null,
-            intro: document.querySelector('.home-introduction') ? rect(document.querySelector('.home-introduction')).width : null,
+            homeResearch: document.querySelector('.home-hero') ? {
+              intro: rect(document.querySelector('.home-introduction')),
+              panel: rect(document.querySelector('.home-hero-layout > .home-research')),
+              hero: rect(document.querySelector('.home-hero')),
+              news: rect(document.querySelector('main > .section.alt')),
+            } : null,
             members: [...document.querySelectorAll('.member-row')].map(card => ({
               card: rect(card),
               list: rect(card.closest('.member-list')),
@@ -160,7 +165,17 @@ async function run() {
         assert.ok(measured.scrollWidth <= width + 1, `Horizontal overflow: ${pagePath} at ${width}`);
         for (const shell of measured.shells) near(shell, expectedWidth, `${pagePath} shell at ${width}`);
         if (measured.reading !== null) near(measured.reading, Math.min(960, expectedWidth), 'reading width');
-        if (measured.intro !== null) assert.ok(measured.intro <= 751, 'intro line width cap');
+        if (measured.homeResearch) {
+          const { intro, panel, hero, news } = measured.homeResearch;
+          assert.ok(intro.width <= 561, 'intro line width cap');
+          assert.ok(panel.bottom <= hero.bottom && hero.bottom <= news.y + 1, 'research remains part of the hero before Latest News');
+          if (width > 1000) {
+            assert.ok(panel.x > intro.right && panel.y < intro.bottom, 'research sits beside the introduction');
+          } else {
+            near(panel.x, intro.x, 'narrow home aligned');
+            assert.ok(panel.y > intro.bottom, 'research stacks below the introduction on narrow screens');
+          }
+        }
         for (const member of measured.members) {
           assert.equal(member.columns, width <= 1100 ? 1 : 2, `member columns at ${width}`);
           const memberListWidth = width <= 1100 ? Math.min(720, expectedWidth) : Math.min(1464, expectedWidth * .94);
