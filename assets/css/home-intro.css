@@ -5,9 +5,9 @@
 .home-introduction .eyebrow { display: block; margin: 0 0 14px; color: #4b555b; font-size: .91rem; font-weight: 550; letter-spacing: 0; line-height: 1.9; text-transform: none; }
 .home-introduction .eyebrow::before { display: none; }
 .home-introduction h1 { margin: 0; font-family: var(--font-heading); font-size: clamp(1.6rem, 2.05vw, 2rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.5; color: #1c252a; }
-.home-recruitment { margin-top: 26px; padding-top: 16px; border-top: 1px solid #c3c6c2; }
-.home-recruitment h2 { margin: 0 0 7px; font-family: var(--font-body); font-size: .91rem; font-weight: 550; line-height: 1.65; letter-spacing: -.01em; color: #3f4a51; }
-.home-recruitment p { margin: 0; color: #59636a; font-size: .82rem; line-height: 1.7; }
+.home-recruitment { margin-top: 26px; padding-top: 16px; border-top: 1px solid #c3c6c2; font-size: .91rem; }
+.home-recruitment h2 { margin: 0 0 7px; font-family: var(--font-body); font-size: inherit; font-weight: 550; line-height: 1.65; letter-spacing: -.01em; color: #3f4a51; }
+.home-recruitment p { margin: 0; color: #59636a; font-size: inherit; font-weight: 400; line-height: 1.7; }
 .home-research { min-width: 0; width: 100%; max-width: 980px; justify-self: end; }
 .home-research > h2 { margin: 0 0 12px; color: #1d262c; font-size: 1.125rem; font-weight: 650; }
 .home-research .research-list { gap: 14px; }
@@ -16,4 +16,4 @@
 .home-research .research-title { margin-bottom: 0; font-size: 1rem; }
 .home-research .research-clip-title { padding-block: 3px; }
 @media (max-width: 1000px) { .home-hero { padding: 40px 0; } .home-hero-layout { grid-template-columns: minmax(0, 1fr); gap: 30px; } .home-research { max-width: none; } }
-@media (max-width: 440px) { .home-hero { padding: 32px 0 28px; } .home-lab-name { font-size: 1.35rem; } .home-introduction .eyebrow { font-size: .78rem; } .home-introduction h1 { font-size: 1.43rem; } .home-recruitment h2 { font-size: .82rem; } .home-recruitment p { font-size: .76rem; } }
+@media (max-width: 440px) { .home-hero { padding: 32px 0 28px; } .home-lab-name { font-size: 1.35rem; } .home-introduction .eyebrow { font-size: .78rem; } .home-introduction h1 { font-size: 1.43rem; } .home-recruitment { font-size: .82rem; } }
