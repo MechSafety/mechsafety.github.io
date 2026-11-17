@@ -1,6 +1,6 @@
 ---
-title: Procedural 3D Modeling with Blender
-summary: Python 코드로 Blender를 제어해 배터리 셀·모듈·팩과 같은 구조물·설비의 3D 형상을 파라미터 기반으로 자동 생성하고, 이를 시뮬레이션 모델링과 AI 학습 데이터 생성에 활용합니다.
+title: Intelligent CAD
+summary: 설계 규칙에 따라 부품과 조립체의 형상 생성 및 변경을 자동화하고, 인공지능을 활용해 설계 조건에 맞는 대안을 탐색하는 방법을 연구합니다.
 images:
   - /images/research/battery-build-poster.jpg
 videos:
