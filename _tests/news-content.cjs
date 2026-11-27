@@ -33,12 +33,17 @@ assert.match(summit, /^category: 세미나$/m);
 assert.match(summit, /공학 시뮬레이션과 인공지능 기술의 산업 활용 사례/);
 const dinnerPhotos = dinner.match(/^images:\r?\n((?:  - [^\r\n]+\r?\n)+)/m)[1]
   .trim().split(/\r?\n/).map(line => line.trim().slice(2));
-assert.deepEqual(dinnerPhotos, [2, 3].map(index => `/images/uploads/lab-dinner-2026-06-24-0${index}.jpg`));
+assert.deepEqual(dinnerPhotos, [
+  '/images/uploads/lab-dinner-2026-06-24-01-retouched.png',
+  '/images/uploads/lab-dinner-2026-06-24-02.jpg',
+  '/images/uploads/lab-dinner-2026-06-24-03.jpg',
+]);
 for (const photo of [...photos, ...dinnerPhotos]) {
   const asset = path.join(process.cwd(), photo.slice(1));
   const bytes = fs.readFileSync(asset);
   assert.ok(bytes.length > 1000);
-  assert.equal(bytes.readUInt16BE(0), 0xffd8);
+  if (photo.endsWith('.png')) assert.equal(bytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+  else assert.equal(bytes.readUInt16BE(0), 0xffd8);
 }
 assert.match(training, /redirect_from:\r?\n  - \/news\/2026-07-24-training-program\//);
 assert.match(test, /^title: 방재시험연구원 배터리 열폭주 시험$/m);
@@ -56,4 +61,4 @@ assert.match(home, /site\.cms_news \| where: 'published', true \| sort: 'date' \
 assert.match(home, /include modern-news-card\.html item=item/);
 const card = fs.readFileSync('_includes/modern-news-card.html', 'utf8');
 assert.match(card, /datetime="\{\{ include\.item\.date \| date: '%Y-%m-%d' \}\}"/);
-console.log(JSON.stringify({pass: true, trainingPhotos: photos.length, dinnerPhotos: dinnerPhotos.length, checks: ['July 29 training title and date', 'training first two photos swapped', 'June 24 lab dinner retains photos 2 and 3 in order', 'original photo files present', 'September 8 thermal runaway title and content', 'existing thermal runaway photos retained', 'old URLs redirected', 'home latest news uses the same records', 'normalized date attributes']}));
+console.log(JSON.stringify({pass: true, trainingPhotos: photos.length, dinnerPhotos: dinnerPhotos.length, checks: ['July 29 training title and date', 'training first two photos swapped', 'June 24 lab dinner shows the retouched cover with photos 2 and 3', 'referenced photo files present', 'September 8 thermal runaway title and content', 'existing thermal runaway photos retained', 'old URLs redirected', 'home latest news uses the same records', 'normalized date attributes']}));
