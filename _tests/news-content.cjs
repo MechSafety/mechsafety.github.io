@@ -37,7 +37,7 @@ assert.match(summit, /^category: 세미나$/m);
 assert.match(summit, /공학 시뮬레이션과 인공지능 기술의 산업 활용 사례/);
 const summitPhotos = summit.match(/^images:\r?\n((?:  - [^\r\n]+\r?\n)+)/m)[1]
   .trim().split(/\r?\n/).map(line => line.trim().slice(2));
-assert.deepEqual(summitPhotos, ['/images/uploads/tsne-tech-summit-2026-retouched.png']);
+assert.deepEqual(summitPhotos, ['/images/uploads/tsne-tech-summit-2026-retouched-v2.png']);
 const dinnerPhotos = dinner.match(/^images:\r?\n((?:  - [^\r\n]+\r?\n)+)/m)[1]
   .trim().split(/\r?\n/).map(line => line.trim().slice(2));
 assert.deepEqual(dinnerPhotos, [

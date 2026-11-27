@@ -3,7 +3,7 @@ title: TSNE Tech Summit 2026
 date: 2026-05-14
 category: 세미나
 images:
-  - /images/uploads/tsne-tech-summit-2026-retouched.png
+  - /images/uploads/tsne-tech-summit-2026-retouched-v2.png
 published: true
 ---
 
