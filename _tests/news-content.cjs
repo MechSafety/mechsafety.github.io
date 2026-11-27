@@ -35,6 +35,9 @@ assert.match(summit, /^title: TSNE Tech Summit 2026$/m);
 assert.match(summit, /^date: 2026-05-14$/m);
 assert.match(summit, /^category: 세미나$/m);
 assert.match(summit, /공학 시뮬레이션과 인공지능 기술의 산업 활용 사례/);
+const summitPhotos = summit.match(/^images:\r?\n((?:  - [^\r\n]+\r?\n)+)/m)[1]
+  .trim().split(/\r?\n/).map(line => line.trim().slice(2));
+assert.deepEqual(summitPhotos, ['/images/uploads/tsne-tech-summit-2026-retouched.png']);
 const dinnerPhotos = dinner.match(/^images:\r?\n((?:  - [^\r\n]+\r?\n)+)/m)[1]
   .trim().split(/\r?\n/).map(line => line.trim().slice(2));
 assert.deepEqual(dinnerPhotos, [
@@ -42,7 +45,7 @@ assert.deepEqual(dinnerPhotos, [
   '/images/uploads/lab-dinner-2026-06-24-02.jpg',
   '/images/uploads/lab-dinner-2026-06-24-03.jpg',
 ]);
-for (const photo of [...photos, ...dinnerPhotos]) {
+for (const photo of [...photos, ...dinnerPhotos, ...summitPhotos]) {
   const asset = path.join(process.cwd(), photo.slice(1));
   const bytes = fs.readFileSync(asset);
   assert.ok(bytes.length > 1000);
