@@ -33,7 +33,7 @@ assert.match(summit, /^category: 세미나$/m);
 assert.match(summit, /공학 시뮬레이션과 인공지능 기술의 산업 활용 사례/);
 const dinnerPhotos = dinner.match(/^images:\r?\n((?:  - [^\r\n]+\r?\n)+)/m)[1]
   .trim().split(/\r?\n/).map(line => line.trim().slice(2));
-assert.deepEqual(dinnerPhotos, [1, 2, 3].map(index => `/images/uploads/lab-dinner-2026-06-24-0${index}.jpg`));
+assert.deepEqual(dinnerPhotos, [2, 3].map(index => `/images/uploads/lab-dinner-2026-06-24-0${index}.jpg`));
 for (const photo of [...photos, ...dinnerPhotos]) {
   const asset = path.join(process.cwd(), photo.slice(1));
   const bytes = fs.readFileSync(asset);
@@ -56,4 +56,4 @@ assert.match(home, /site\.cms_news \| where: 'published', true \| sort: 'date' \
 assert.match(home, /include modern-news-card\.html item=item/);
 const card = fs.readFileSync('_includes/modern-news-card.html', 'utf8');
 assert.match(card, /datetime="\{\{ include\.item\.date \| date: '%Y-%m-%d' \}\}"/);
-console.log(JSON.stringify({pass: true, trainingPhotos: photos.length, dinnerPhotos: dinnerPhotos.length, checks: ['July 29 training title and date', 'training first two photos swapped', 'June 24 lab dinner with three photos in supplied order', 'original photo files present', 'September 8 thermal runaway title and content', 'existing thermal runaway photos retained', 'old URLs redirected', 'home latest news uses the same records', 'normalized date attributes']}));
+console.log(JSON.stringify({pass: true, trainingPhotos: photos.length, dinnerPhotos: dinnerPhotos.length, checks: ['July 29 training title and date', 'training first two photos swapped', 'June 24 lab dinner retains photos 2 and 3 in order', 'original photo files present', 'September 8 thermal runaway title and content', 'existing thermal runaway photos retained', 'old URLs redirected', 'home latest news uses the same records', 'normalized date attributes']}));
