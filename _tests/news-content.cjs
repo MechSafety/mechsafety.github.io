@@ -13,7 +13,11 @@ assert.match(training, /파우치셀 조립 공정 교육에 참여했습니다/
 assert.doesNotMatch(training, /2026-07-24(?!-training-program)|학생 전문교육 프로그램 참여|새로운 해석 기법/);
 const photos = training.match(/^images:\r?\n((?:  - [^\r\n]+\r?\n)+)/m)[1]
   .trim().split(/\r?\n/).map(line => line.trim().slice(2));
-const expectedPhotos = [2, 1, 3, 4, 5].map(index => `/images/uploads/pouch-cell-assembly-2026-07-29-0${index}.jpg`);
+const expectedPhotos = [
+  '/images/uploads/pouch-cell-assembly-2026-07-29-01.jpg',
+  '/images/uploads/pouch-cell-assembly-2026-07-29-02-retouched.png',
+  ...[3, 4, 5].map(index => `/images/uploads/pouch-cell-assembly-2026-07-29-0${index}.jpg`),
+];
 assert.deepEqual(photos, expectedPhotos);
 assert.match(dinner, /^title: 연구실 회식$/m);
 assert.match(dinner, /^date: 2026-06-24$/m);
@@ -61,4 +65,4 @@ assert.match(home, /site\.cms_news \| where: 'published', true \| sort: 'date' \
 assert.match(home, /include modern-news-card\.html item=item/);
 const card = fs.readFileSync('_includes/modern-news-card.html', 'utf8');
 assert.match(card, /datetime="\{\{ include\.item\.date \| date: '%Y-%m-%d' \}\}"/);
-console.log(JSON.stringify({pass: true, trainingPhotos: photos.length, dinnerPhotos: dinnerPhotos.length, checks: ['July 29 training title and date', 'training first two photos swapped', 'June 24 lab dinner shows the retouched cover with photos 2 and 3', 'referenced photo files present', 'September 8 thermal runaway title and content', 'existing thermal runaway photos retained', 'old URLs redirected', 'home latest news uses the same records', 'normalized date attributes']}));
+console.log(JSON.stringify({pass: true, trainingPhotos: photos.length, dinnerPhotos: dinnerPhotos.length, checks: ['July 29 training title and date', 'approved training retouch is the second of five photos', 'June 24 lab dinner shows the retouched cover with photos 2 and 3', 'referenced photo files present', 'September 8 thermal runaway title and content', 'existing thermal runaway photos retained', 'old URLs redirected', 'home latest news uses the same records', 'normalized date attributes']}));

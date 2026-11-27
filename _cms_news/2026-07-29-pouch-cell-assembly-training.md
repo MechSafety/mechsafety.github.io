@@ -3,8 +3,8 @@ title: 파우치셀 조립 공정 교육
 date: 2026-07-29
 category: 교육
 images:
-  - /images/uploads/pouch-cell-assembly-2026-07-29-02.jpg
   - /images/uploads/pouch-cell-assembly-2026-07-29-01.jpg
+  - /images/uploads/pouch-cell-assembly-2026-07-29-02-retouched.png
   - /images/uploads/pouch-cell-assembly-2026-07-29-03.jpg
   - /images/uploads/pouch-cell-assembly-2026-07-29-04.jpg
   - /images/uploads/pouch-cell-assembly-2026-07-29-05.jpg
